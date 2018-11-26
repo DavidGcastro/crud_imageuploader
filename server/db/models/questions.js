@@ -1,10 +1,14 @@
 const db = require('../index');
 const Sequelize = require('sequelize');
 
-const questions = db.define('question', {
-  question: {
-    type: Sequelize.TEXT
-  }
-});
+const Questions = db.define(
+  'questions',
+  {
+    question: {
+      type: Sequelize.TEXT
+    }
+  },
+  { timestamps: false }
+);
 
-module.exports = questions;
+module.exports = Questions;

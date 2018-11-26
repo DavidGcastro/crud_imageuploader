@@ -17,4 +17,4 @@ user.belongsToMany(questions, { through: 'user-questions' });
 
 // This is also probably a good place for you to set up your associations
 
-module.exports = { db };
+module.exports = { db, user, photos, questions };

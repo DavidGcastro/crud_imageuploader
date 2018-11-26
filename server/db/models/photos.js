@@ -1,10 +1,14 @@
 const db = require('../index');
 const Sequelize = require('sequelize');
 
-const photos = db.define('photos', {
-  photo: {
-    type: Sequelize.BLOB
-  }
-});
+const Photos = db.define(
+  'photos',
+  {
+    photo: {
+      type: Sequelize.BLOB
+    }
+  },
+  { timestamps: false }
+);
 
-module.exports = photos;
+module.exports = Photos;
