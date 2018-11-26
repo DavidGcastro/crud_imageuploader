@@ -2,7 +2,6 @@ const db = require('../index');
 const Sequelize = require('sequelize');
 const hashing = require('../../utils/hashing');
 
-
 const User = db.define(
   'user',
   {
