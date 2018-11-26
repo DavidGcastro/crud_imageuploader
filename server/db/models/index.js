@@ -5,8 +5,12 @@ const user = require('../models/user');
 const questions = require('../models/questions');
 const photos = require('../models/photos');
 
+photos.belongsTo(user);
 user.hasMany(photos);
-user.hasMany(questions);
+
+questions.belongsToMany(user, { through: 'user-questions' });
+user.belongsToMany(questions, { through: 'user-questions' });
+
 // Running each model (i.e. table) module (i.e. file) registers each model into our sequelize db
 // This works if we all use the same Sequelize instance (instantiated in and exported from `/db/index.js`)
 // Exporting all models from here seems like a good idea!
