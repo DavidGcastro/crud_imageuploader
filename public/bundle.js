@@ -130,7 +130,7 @@ eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\n
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\n\nvar _react = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n\nvar _react2 = _interopRequireDefault(_react);\n\nvar _reactDom = __webpack_require__(/*! react-dom */ \"./node_modules/react-dom/index.js\");\n\nvar _reactDom2 = _interopRequireDefault(_reactDom);\n\nvar _Main = __webpack_require__(/*! ./components/Main */ \"./client/components/Main.js\");\n\nvar _Main2 = _interopRequireDefault(_Main);\n\n__webpack_require__(/*! ./styles/main.scss */ \"./client/styles/main.scss\");\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\n_reactDom2.default.render(_react2.default.createElement(\n  'div',\n  { className: 'first' },\n  _react2.default.createElement(_Main2.default, null)\n), document.getElementById('root'));\n\n//# sourceURL=webpack:///./client/index.js?");
+eval("\n\nvar _react = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n\nvar _react2 = _interopRequireDefault(_react);\n\nvar _reactDom = __webpack_require__(/*! react-dom */ \"./node_modules/react-dom/index.js\");\n\nvar _reactDom2 = _interopRequireDefault(_reactDom);\n\nvar _Main = __webpack_require__(/*! ./components/Main */ \"./client/components/Main.js\");\n\nvar _Main2 = _interopRequireDefault(_Main);\n\n__webpack_require__(/*! ../node_modules/normalize.css/normalize.css */ \"./node_modules/normalize.css/normalize.css\");\n\n__webpack_require__(/*! ./styles/main.scss */ \"./client/styles/main.scss\");\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\n_reactDom2.default.render(_react2.default.createElement(\n  'div',\n  { className: 'first' },\n  _react2.default.createElement(_Main2.default, null)\n), document.getElementById('root'));\n\n//# sourceURL=webpack:///./client/index.js?");
 
 /***/ }),
 
@@ -4146,6 +4146,17 @@ eval("/* WEBPACK VAR INJECTION */(function(global) {/**\n * Copyright (c) 2014, 
 
 /***/ }),
 
+/***/ "./node_modules/css-loader/index.js!./node_modules/normalize.css/normalize.css":
+/*!****************************************************************************!*\
+  !*** ./node_modules/css-loader!./node_modules/normalize.css/normalize.css ***!
+  \****************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+eval("throw new Error(\"Module build failed (from ./node_modules/css-loader/index.js):\\nError: ENOENT: no such file or directory, open '/Users/davidcastro/fullstack-hw/node_modules/normalize.css/normalize.css'\");\n\n//# sourceURL=webpack:///./node_modules/normalize.css/normalize.css?./node_modules/css-loader");
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/index.js!./node_modules/sass-loader/lib/loader.js!./client/styles/main.scss":
 /*!****************************************************************************************************!*\
   !*** ./node_modules/css-loader!./node_modules/sass-loader/lib/loader.js!./client/styles/main.scss ***!
@@ -4476,6 +4487,17 @@ eval("/**\n * Copyright (c) 2013-present, Facebook, Inc.\n *\n * This source cod
 /***/ (function(module, exports) {
 
 eval("/*!\n * Determine if an object is a Buffer\n *\n * @author   Feross Aboukhadijeh <https://feross.org>\n * @license  MIT\n */\n\n// The _isBuffer check is for Safari 5-7 support, because it's missing\n// Object.prototype.constructor. Remove this eventually\nmodule.exports = function (obj) {\n  return obj != null && (isBuffer(obj) || isSlowBuffer(obj) || !!obj._isBuffer)\n}\n\nfunction isBuffer (obj) {\n  return !!obj.constructor && typeof obj.constructor.isBuffer === 'function' && obj.constructor.isBuffer(obj)\n}\n\n// For Node v0.10 support. Remove this eventually.\nfunction isSlowBuffer (obj) {\n  return typeof obj.readFloatLE === 'function' && typeof obj.slice === 'function' && isBuffer(obj.slice(0, 0))\n}\n\n\n//# sourceURL=webpack:///./node_modules/is-buffer/index.js?");
+
+/***/ }),
+
+/***/ "./node_modules/normalize.css/normalize.css":
+/*!**************************************************!*\
+  !*** ./node_modules/normalize.css/normalize.css ***!
+  \**************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("\nvar content = __webpack_require__(/*! !../css-loader!./normalize.css */ \"./node_modules/css-loader/index.js!./node_modules/normalize.css/normalize.css\");\n\nif(typeof content === 'string') content = [[module.i, content, '']];\n\nvar transform;\nvar insertInto;\n\n\n\nvar options = {\"hmr\":true}\n\noptions.transform = transform\noptions.insertInto = undefined;\n\nvar update = __webpack_require__(/*! ../style-loader/lib/addStyles.js */ \"./node_modules/style-loader/lib/addStyles.js\")(content, options);\n\nif(content.locals) module.exports = content.locals;\n\nif(false) {}\n\n//# sourceURL=webpack:///./node_modules/normalize.css/normalize.css?");
 
 /***/ }),
 
