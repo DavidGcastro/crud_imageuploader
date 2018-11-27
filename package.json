@@ -8,7 +8,7 @@
     "start": "node server/index.js & npm build",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack -w",
-    "start-server": "nodemon server/index.js -e html,js,scss --ignore public --ignore client "
+    "start-server": "nodemon server/index.js -e html,js,scss --ignore public --ignore client & npm run build"
   },
   "author": "David Castro",
   "license": "ISC",
