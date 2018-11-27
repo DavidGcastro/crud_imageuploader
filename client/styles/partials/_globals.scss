@@ -38,9 +38,9 @@ a {
   display: flex;
   flex-direction: column;
 
-  div {
-    // width: 100%;
-  }
+//  div {
+//     width: 100%;ƒunde
+//   }
 }
 .wrapper {
   max-width: 1280px;
@@ -106,13 +106,13 @@ input {
 .underline {
   display: inline;
   padding-bottom: 5px;
-  border-bottom: 3px solid $niceBlack;
+  border-bottom: 3px solid $mintGreen;
 }
 
 *:focus {
   outline: none;
 }
-//use this are the parent div for everypage
+//use this are the parent div for every page
 .parentFlexer {
   height: 100%;
   display: flex;
