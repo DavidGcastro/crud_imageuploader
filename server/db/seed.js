@@ -14,14 +14,12 @@ async function seed() {
 function seedUsers() {
   return Promise.all(
     new Array(6).fill(1).map(() =>
-      user
-        .create({
-          firstName: faker.name.firstName(),
-          lastName: faker.name.lastName(),
-          email: faker.internet.exampleEmail(),
-          password: 'password'
-        })
-        .then(x => x.addQuestions(allQuestions))
+      user.create({
+        firstName: faker.name.firstName(),
+        lastName: faker.name.lastName(),
+        email: faker.internet.exampleEmail(),
+        password: 'password'
+      })
     )
   );
 }
@@ -30,8 +28,7 @@ function seedQuestions() {
   return Promise.all(
     new Array(6).fill(1).map(() =>
       questions.create({
-        question: faker.lorem.sentence() + '?',
-        answer: faker.lorem.sentence()
+        question: faker.lorem.sentence() + '?'
       })
     )
   );

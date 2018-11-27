@@ -12,7 +12,7 @@ router.get('/', (req, res, next) => {
 
 router.get('/:id', (req, res, next) => {
   let { id } = req.params;
-  User.findAll({
+  user.findAll({
     where: { id },
     include: [{ all: true }]
   })
