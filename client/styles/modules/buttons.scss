@@ -1,0 +1,39 @@
+.button {
+  &--submit {
+    background: $mintGreen;
+    color: white;
+    font-weight: 500;
+    border: 0;
+    font-size: 4vw;
+    font-weight: 200;
+    border-radius: 4px;
+    width: 100%;
+    height: 45px;
+    transition: 200ms all ease;
+    &:hover {
+      background: #444;
+      border: 1px solid #444;
+      color: #fff;
+    }
+    @include sm {
+      font-size: 1rem;
+      max-width: 350px;
+      flex: 1;
+    }
+  }
+
+  &--action {
+    @extend .button--submit;
+    background: $mintGreen;
+    color: black;
+    text-transform: uppercase;
+    font-weight: 500;
+    letter-spacing: 2px;
+    border-radius: 25px;
+    &:hover {
+      background: white;
+      border: 1px solid #444;
+      color: black;
+    }
+  }
+}

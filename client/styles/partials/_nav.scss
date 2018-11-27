@@ -7,12 +7,16 @@
     align-items: center;
     padding: 0 20px;
   }
-  &--logo {
+
+  &--logo--container {
     flex: 1;
-    letter-spacing: 4px;
     @include md {
-      flex: 3;
+      flex: 4;
     }
+  }
+  &--logo {
+    display: inline-block;
+    letter-spacing: 4px;
   }
 
   &--links {
