@@ -1,0 +1,68 @@
+.text--large {
+  font-size: 6vw;
+  font-weight: 300;
+  display: block;
+  font-weight: 300;
+
+  &--bold {
+    @extend .text--large;
+    letter-spacing: 2px;
+    font-weight: 500;
+  }
+
+  @include sm {
+    font-size: 24px;
+  }
+
+  @include md {
+    font-size: 30px;
+  }
+  @include lg {
+    font-size: 35px;
+  }
+}
+
+.text--reg {
+  color: #646f79;
+  display: block;
+  font-size: 4vw;
+  font-weight: 100;
+
+  @include sm {
+    font-size: 16px;
+  }
+  @include md {
+    font-size: 24px;
+  }
+}
+
+.text--large--light {
+  @extend .text--large;
+  font-weight: 300;
+  letter-spacing: 2px;
+  padding-bottom: 5px;
+
+  @include md {
+    line-height: 35px;
+
+    padding-bottom: 0px;
+    text-align: left;
+  }
+}
+
+.right-align {
+  @include md {
+    text-align: right;
+  }
+}
+
+.text--underline {
+  border-bottom: $niceBlack;
+  padding-bottom: 30px;
+}
+
+.text--danger {
+  @extend .text--reg;
+  color: red;
+  padding-top: 10px;
+}

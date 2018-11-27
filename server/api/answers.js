@@ -1,23 +1,21 @@
 const router = require('express').Router();
-const { user } = require('../db/models/index');
+const { answer, question } = require('../db/models/index');
 
 router.get('/', (req, res, next) => {
-  user
-    .findAll({
-      include: [{ all: true }]
-    })
-    .then(users => res.send(users))
+  answer
+    .findAll()
+    .then(answers => res.send(answers))
     .catch(err => console.error(err));
 });
 
 router.get('/:id', (req, res, next) => {
   let { id } = req.params;
-  user
+  answer
     .findAll({
-      where: { id },
+      where: { userId: id },
       include: [{ all: true }]
     })
-    .then(user => res.send(user))
+    .then(answer => res.send(answer))
     .catch(err => console.error(err));
 });
 
