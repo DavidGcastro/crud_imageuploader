@@ -1,5 +1,5 @@
 const faker = require('faker');
-const { db, user, questions } = require('./models');
+const { db, user, question } = require('./models');
 const Promise = db.Promise; // gives us Promise.map
 let allQuestions;
 let allUsers;
@@ -27,7 +27,7 @@ function seedUsers() {
 function seedQuestions() {
   return Promise.all(
     new Array(6).fill(1).map(() =>
-      questions.create({
+      question.create({
         question: faker.lorem.sentence() + '?'
       })
     )
