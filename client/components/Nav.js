@@ -3,15 +3,19 @@ import { Link } from 'react-router-dom';
 
 const Nav = () => {
   return (
-    <div className="nav--parent wrapper">
-      <span className="title--large--light logo">Hinge HW</span>
-      <div className="nav--links">
-        <Link className="text--reg" to="/login">
-          Log In
+    <div className="nav">
+      <div className="wrapper nav--container">
+        <Link className="text--large--bold link nav--logo" to="/">
+          HINGE
         </Link>
-        <Link className="text--reg" to="/signup">
-          Sign up
-        </Link>
+        <div className="nav--links">
+          <Link className="link" to="/login">
+            Log In
+          </Link>
+          <Link className="link" to="/signup">
+            Sign up
+          </Link>
+        </div>
       </div>
     </div>
   );

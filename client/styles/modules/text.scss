@@ -36,7 +36,7 @@
   }
 }
 
-.title--large--light {
+.text--large--light {
   @extend .text--large;
   font-weight: 300;
   letter-spacing: 2px;
@@ -57,12 +57,12 @@
 }
 
 .text--underline {
-  border-bottom: $darkGreen;
+  border-bottom: $niceBlack;
   padding-bottom: 30px;
 }
 
 .text--danger {
   @extend .text--reg;
-  color: $success;
+  color: red;
   padding-top: 10px;
 }
