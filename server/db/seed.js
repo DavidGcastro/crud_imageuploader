@@ -30,7 +30,8 @@ function seedQuestions() {
   return Promise.all(
     new Array(6).fill(1).map(() =>
       questions.create({
-        question: faker.lorem.sentence() + '?'
+        question: faker.lorem.sentence() + '?',
+        answer: faker.lorem.sentence()
       })
     )
   );
