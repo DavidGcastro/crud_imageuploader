@@ -5,9 +5,11 @@ const Nav = () => {
   return (
     <div className="nav">
       <div className="wrapper nav--container">
-        <Link className="text--large--bold link nav--logo" to="/">
-          HINGE
-        </Link>
+        <div className="nav--logo--container">
+          <Link className="text--large--bold link nav--logo" to="/">
+            HINGE
+          </Link>
+        </div>
         <div className="nav--links">
           <Link className="link" to="/login">
             Log In
