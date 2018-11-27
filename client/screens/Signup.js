@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import MyForm from '../components/MyForm';
-
 export default class Signup extends Component {
   constructor() {
     super();
