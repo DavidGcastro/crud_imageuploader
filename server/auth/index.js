@@ -4,6 +4,7 @@ router.get('/me', (req, res) => {
   if (req.user) {
     res.send(req.user);
   } else {
+    // res.send(false);
     res.status(500).send('Something broke!');
   }
 });
