@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 const Nav = () => {
   return (
     <div className="nav--parent wrapper">
-      <span className="title--large--light logo">Sploreguide</span>
+      <span className="title--large--light logo">Hinge HW</span>
       <div className="nav--links">
         <Link className="text--reg" to="/login">
           Log In

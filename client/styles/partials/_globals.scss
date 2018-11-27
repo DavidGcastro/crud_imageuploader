@@ -10,7 +10,7 @@ body {
 }
 #root {
   height: 100%;
-  & div {
+  &.div {
     height: 100%;
   }
 }
@@ -36,7 +36,7 @@ body {
   }
 }
 .wrapper {
-  max-width: 1400px;
+  max-width: 1280px;
   margin: 0 auto;
 }
 
@@ -49,14 +49,12 @@ input {
   box-shadow: none;
 }
 
-
 .centered-image {
   min-width: 350px;
   width: 100%;
   height: auto;
   max-width: 600px;
 }
-
 
 .padder {
   padding: 30px;
@@ -98,4 +96,35 @@ input {
   width: 100%;
 }
 
+.underline {
+  display: inline;
+  padding-bottom: 5px;
+  border-bottom: 3px solid $niceBlack;
+}
 
+*:focus {
+  outline: none;
+}
+//use this are the parent div for everypage
+.parentFlexer {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 1;
+}
+
+.parentFlexerSpaceAround {
+  @extend .parentFlexer;
+  justify-content: space-around;
+}
+
+.parentFlexerCenter {
+  @extend .parentFlexer;
+  justify-content: center;
+}
+
+.parentFlexerEvenly {
+  @extend .parentFlexer;
+  justify-content: space-evenly;
+}
