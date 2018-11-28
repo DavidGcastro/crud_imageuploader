@@ -28,7 +28,7 @@ class Login extends Component {
       <MyForm
         salutation="Welcome"
         salutation2="Back."
-        message="Enter the email address associated with your account, and we’ll send a magic link to your inbox.">
+        message="Quisque velit nisi, pretium ut lcinia in, elementum id enim. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices.">
         <form className="form--wrapper">
           <div className="input--section">
             <label className="text--reg input--label">Your Email</label>

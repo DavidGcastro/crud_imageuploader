@@ -1,17 +1,19 @@
 import React from 'react';
 import Nav from './Nav';
-import Login from '../screens/Login';
-import Signup from '../screens/Signup';
+import Login from '../containers/Login';
+import Signup from '../containers/Signup';
 import Profile from '../auth/Profile';
 import Home from './Home';
 import { Router, Route, Switch } from 'react-router-dom';
 import { setUserAsync } from '../redux/reducers/user';
+import { getQuestionsAsync } from '../redux/reducers/questions';
 import history from '../history';
 import { connect } from 'react-redux';
 
 class Main extends React.Component {
   componentDidMount() {
     this.props.setUserAsync();
+    this.props.getQuestionsAsync();
   }
   render() {
     let userLoggedIn = this.props.user ? true : false;
@@ -49,7 +51,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    setUserAsync: () => dispatch(setUserAsync())
+    setUserAsync: () => dispatch(setUserAsync()),
+    getQuestionsAsync: () => dispatch(getQuestionsAsync())
   };
 };
 

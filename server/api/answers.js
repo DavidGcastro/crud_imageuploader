@@ -3,7 +3,9 @@ const { answer, question } = require('../db/models/index');
 
 router.get('/', (req, res, next) => {
   answer
-    .findAll()
+    .findAll({
+      include: [{ model: question }]
+    })
     .then(answers => res.send(answers))
     .catch(err => console.error(err));
 });
@@ -13,7 +15,7 @@ router.get('/:id', (req, res, next) => {
   answer
     .findAll({
       where: { userId: id },
-      include: [{ all: true }]
+      include: [{ model: question }]
     })
     .then(answer => res.send(answer))
     .catch(err => console.error(err));

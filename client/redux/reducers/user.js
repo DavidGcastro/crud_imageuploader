@@ -3,11 +3,14 @@ import history from '../../history';
 const SET_USER = 'SET_USER';
 const CREATE_USER = 'CREATE_USER';
 const LOG_OUT = 'LOG_OUT';
-const GET_ANSWERS = 'GET_ANSWERS';
-const CHECK_USER = 'CHECK_USER';
+const SET_QUESTIONS_AND_ANSWERS = 'SET_QUESTIONS_AND_ANSWERS';
 /* ACTION CREATORS */
 const setUser = user => ({ type: SET_USER, user });
 const logoutUser = () => ({ type: LOG_OUT });
+const setUserQuestionsAndAnswers = qa => ({
+  type: SET_QUESTIONS_AND_ANSWERS,
+  questionsAndAnswers: qa
+});
 
 /* THUNKS CREATORS*/
 /**************************************************************************/
@@ -37,7 +40,16 @@ export const loginUserAsync = data => dispatch => {
 export const setUserAsync = () => dispatch =>
   axios
     .get('/auth/me')
-    .then(me => dispatch(setUser(me.data)))
+    .then(me => {
+      dispatch(setUser(me.data));
+      return me.data;
+    })
+    .then(user =>
+      axios
+        .get(`/api/answers/${user.id}`)
+        .then(qa => dispatch(setUserQuestionsAndAnswers(qa.data)))
+        .catch(err => console.log(err))
+    )
     .catch(err => console.log(err));
 
 export const createUserAsync = data => dispatch => {
@@ -75,6 +87,8 @@ export default function(initialState = {}, action) {
       return { ...initialState, user: false };
     case CREATE_USER:
       return { ...initialState, user: action.newUser };
+    case SET_QUESTIONS_AND_ANSWERS:
+      return { ...initialState, questionsAndAnswers: action.questionsAndAnswers};
     default:
       return initialState;
   }
