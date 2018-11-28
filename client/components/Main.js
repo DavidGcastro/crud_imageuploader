@@ -5,27 +5,54 @@ import Signup from '../screens/Signup';
 import Profile from '../auth/Profile';
 import Home from './Home';
 import { Router, Route, Switch } from 'react-router-dom';
+import { setUserAsync } from '../redux/reducers/user';
 import history from '../history';
-const Main = () => {
-  return (
-    <Router history={history}>
-      <div id="container">
-        <div className="main--content">
-          {/*Nav goes here*/}
-          <Nav />
-          <div className="spacer" />
-          {/*Content goes here*/}
-          <Switch>
-            <Route exact path="/" component={Home} />
-            <Route path="/login" component={Login} />
-            <Route path="/signup" component={Signup} />
-            <Route path="/profile" component={Profile} />
-          </Switch>
+import { connect } from 'react-redux';
+
+class Main extends React.Component {
+  componentDidMount() {
+    this.props.setUserAsync();
+  }
+  render() {
+    let userLoggedIn = this.props.user ? true : false;
+    console.log(userLoggedIn);
+    console.log(this.props.user);
+
+    return (
+      <Router history={history}>
+        <div id="container">
+          <div className="main--content">
+            {/*Nav goes here*/}
+            <Nav userLoggedIn={userLoggedIn} />
+            <div className="spacer" />
+            {/*Content goes here*/}
+            <Switch>
+              <Route exact path="/" component={Home} />
+              <Route path="/login" component={Login} />
+              <Route path="/signup" component={Signup} />
+              <Route path="/profile" component={Profile} />
+            </Switch>
+          </div>
+          {/*Footer goes here*/}
         </div>
-        {/*Footer goes here*/}
-      </div>
-    </Router>
-  );
+      </Router>
+    );
+  }
+}
+
+const mapStateToProps = state => {
+  return {
+    user: state.userReducer.user
+  };
 };
 
-export default Main;
+const mapDispatchToProps = dispatch => {
+  return {
+    setUserAsync: () => dispatch(setUserAsync())
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Main);
