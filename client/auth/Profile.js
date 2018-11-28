@@ -15,43 +15,16 @@ class Profile extends Component {
   };
   render() {
     let { QandA, user, questions } = this.props;
-    console.log(questions);
     return (
       <div className="parentFlexer wrapper">
-        <div className="profile">
-          <div>
-            <span className="text--large--light">Hello, {user.firstName}</span>
+        <div className="profile innerPadding">
+          <div className="profile--header">
+            <span className="text--large--bold underline">
+              {user.firstName}
+            </span>
           </div>
-          <div className="profile--split">
-            <div className="profile--questions">
-              <span className="text--large--light"> Profile Questions</span>
-              {QandA &&
-                QandA.map(x => {
-                  return (
-                    <div key={x.id} style={{ marginBottom: 10, marginTop: 10 }}>
-                      <span className="text--reg--bold underline">
-                        {x.question.question}
-                      </span>
-                      <input
-                        onClick={this.handleDelete}
-                        className="button--submit"
-                        type="button"
-                        value={x.id}
-                      />
-                      <span className="text--reg" style={{ marginTop: 5 }}>
-                        {x.response}
-                      </span>
-                    </div>
-                  );
-                })}
-              <div>
-                <p>availble questions</p>
-                {questions &&
-                  questions.map(q => {
-                    return <p>{q.question}</p>;
-                  })}
-              </div>
-            </div>
+          <div className="profile--content">
+            <span className="text--large--light underine">My Photos</span>
           </div>
         </div>
       </div>
@@ -78,3 +51,37 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(Profile);
+
+// <div className="profile--split">
+//   <div className="profile--questions">
+//     {QandA && QandA.length ? (
+//       QandA.map(x => {
+//         return (
+//           <div key={x.id} style={{ marginBottom: 10, marginTop: 10 }}>
+//             <span className="text--reg--bold underline">
+//               {x.question.question}
+//             </span>
+//             <input
+//               onClick={this.handleDelete}
+//               className="button--submit"
+//               type="button"
+//               value={x.id}
+//             />
+//             <span className="text--reg" style={{ marginTop: 5 }}>
+//               {x.response}
+//             </span>
+//           </div>
+//         );
+//       })
+//     ) : (
+//         <div>
+//           <span className="text--reg">No Answers yet.</span>
+//           <input
+//             value="Add Question"
+//             type="submit"
+//             className="button--action"
+//             style={{ marginTop: 25, padding: 3 }}
+//           />
+//         </div>
+//       )}
+//   </div>

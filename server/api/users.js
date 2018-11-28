@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { user } = require('../db/models/index');
+const { user, photo } = require('../db/models/index');
 
 router.get('/', (req, res, next) => {
   user
@@ -7,7 +7,7 @@ router.get('/', (req, res, next) => {
       include: [{ all: true }]
     })
     .then(users => res.send(users))
-    .catch(err => console.error(err));
+    .catch(err => next(err));
 });
 
 router.get('/:id', (req, res, next) => {
@@ -18,7 +18,19 @@ router.get('/:id', (req, res, next) => {
       include: [{ all: true }]
     })
     .then(user => res.send(user))
-    .catch(err => console.error(err));
+    .catch(err => next(err));
+});
+
+router.post('/photos/:id', (req, res, next) => {
+  let { photo } = req.body;
+  let { id } = req.params;
+  user
+    .findOne({
+      where: { id }
+    })
+    .then(userFound => userFound.setPhoto(photo))
+    .then(() => res.sendStatus(200))
+    .catch(err => next(err));
 });
 
 module.exports = router;
