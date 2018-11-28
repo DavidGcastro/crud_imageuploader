@@ -15,14 +15,10 @@ class Main extends React.Component {
   }
   render() {
     let userLoggedIn = this.props.user ? true : false;
-    console.log(userLoggedIn);
-    console.log(this.props.user);
-
     return (
       <Router history={history}>
         <div id="container">
           <div className="main--content">
-            {/*Nav goes here*/}
             <Nav userLoggedIn={userLoggedIn} />
             <div className="spacer" />
             {/*Content goes here*/}
@@ -30,7 +26,12 @@ class Main extends React.Component {
               <Route exact path="/" component={Home} />
               <Route path="/login" component={Login} />
               <Route path="/signup" component={Signup} />
-              <Route path="/profile" component={Profile} />
+              {userLoggedIn && (
+                <Switch>
+                  {/* Routes placed here are only available after logging in */}
+                  <Route path="/profile" component={Profile} />
+                </Switch>
+              )}
             </Switch>
           </div>
           {/*Footer goes here*/}
