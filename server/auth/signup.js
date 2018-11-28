@@ -3,7 +3,6 @@ const { user } = require('../db/models');
 
 router.post('/', (req, res, next) => {
   let { firstName, lastName, email, password } = req.body;
-  console.log('HITTT');
   user
     .create({ firstName, lastName, email, password })
     .then(user => {

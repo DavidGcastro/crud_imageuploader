@@ -28,13 +28,19 @@ export const loginUserAsync = data => dispatch => {
       return response;
     })
     .then(x => {
-      if (x.data.redirectUrl) {
-        history.push('/profile');
-      }
+      history.push('/profile');
     })
     .catch(error => {
       console.error(error);
     });
+};
+
+export const getQuestionsAndAnswersAsync = () => (dispatch, getState) => {
+  let userId = getState().userReducer.user.id;
+  axios
+    .get(`/api/answers/${userId}`)
+    .then(qa => dispatch(setUserQuestionsAndAnswers(qa.data)))
+    .catch(err => console.log(err));
 };
 
 export const setUserAsync = () => dispatch =>
@@ -62,9 +68,7 @@ export const createUserAsync = data => dispatch => {
       return res;
     })
     .then(x => {
-      if (x.data.redirectUrl) {
-        history.push('/profile');
-      }
+      history.push('/profile');
     });
 };
 
@@ -72,7 +76,7 @@ export const logOutUserAsync = () => dispatch => {
   axios
     .get('/auth/logout')
     .then(() => dispatch(logoutUser()))
-    .then(() => (window.location.href = '/'))
+    .then(() => history.push('/'))
     .catch(err => console.log(err));
 };
 
@@ -88,7 +92,10 @@ export default function(initialState = {}, action) {
     case CREATE_USER:
       return { ...initialState, user: action.newUser };
     case SET_QUESTIONS_AND_ANSWERS:
-      return { ...initialState, questionsAndAnswers: action.questionsAndAnswers};
+      return {
+        ...initialState,
+        questionsAndAnswers: action.questionsAndAnswers
+      };
     default:
       return initialState;
   }
