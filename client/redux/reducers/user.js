@@ -1,10 +1,10 @@
 import axios from 'axios';
+import history from '../../history';
 const LOGIN_USER = 'LOGIN_USER';
 const CREATE_USER = 'CREATE_USER';
 const LOG_OUT = 'LOG_OUT';
 const GET_ANSWERS = 'GET_ANSWERS';
 const CHECK_USER = 'CHECK_USER';
-
 /* ACTION CREATORS */
 const loginUser = user => ({ type: LOGIN_USER, user });
 
@@ -21,8 +21,11 @@ export const loginUserAsync = data => dispatch => {
     .then(response => {
       let userId = response.data.user.id;
       dispatch(loginUser(userId));
-      if (response.data.redirectUrl) {
-        window.location.href = response.data.redirectUrl;
+      return response;
+    })
+    .then(x => {
+      if (x.data.redirectUrl) {
+        history.push('/profile');
       }
     })
     .catch(error => {
@@ -33,7 +36,7 @@ export const loginUserAsync = data => dispatch => {
 /**************************************************************************/
 
 /* REDUCER */
-export default function(initialState = {}, action) {
+export default function x(initialState = {}, action) {
   switch (action.type) {
     case LOGIN_USER:
       return { ...initialState, user: action.user };

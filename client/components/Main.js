@@ -2,11 +2,12 @@ import React from 'react';
 import Nav from './Nav';
 import Login from '../screens/Login';
 import Signup from '../screens/Signup';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-
+import Profile from '../auth/Profile';
+import { Router, Route, Switch } from 'react-router-dom';
+import history from '../history';
 const Main = () => {
   return (
-    <Router>
+    <Router history={history}>
       <div id="container">
         <div className="main--content">
           {/*Nav goes here*/}
@@ -16,7 +17,7 @@ const Main = () => {
           <Switch>
             <Route path="/login" component={Login} />
             <Route path="/signup" component={Signup} />
-
+            <Route path="/profile" component={Profile} />
           </Switch>
         </div>
         {/*Footer goes here*/}

@@ -9,7 +9,7 @@ const reducer = combineReducers({
 
 const middleware = applyMiddleware(
   thunkMiddleware,
-  createLogger({ collapsed: false })
+  createLogger({ collapsed: true })
 );
 
 const store = createStore(reducer, middleware);
