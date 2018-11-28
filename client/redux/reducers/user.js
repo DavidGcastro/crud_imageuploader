@@ -43,6 +43,14 @@ export const getQuestionsAndAnswersAsync = () => (dispatch, getState) => {
     .catch(err => console.log(err));
 };
 
+export const deleteAnswerAsync = id => dispatch => {
+  console.log('FFFFF');
+  axios
+    .delete(`/api/answers/${id}`)
+    .then(() => dispatch(getQuestionsAndAnswersAsync()))
+    .catch(err => console.log(err));
+};
+
 export const setUserAsync = () => dispatch =>
   axios
     .get('/auth/me')

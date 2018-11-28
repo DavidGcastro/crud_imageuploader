@@ -1,0 +1,15 @@
+.profile {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.profile--split {
+  display: flex;
+  justify-content: center;
+
+  & div {
+    flex: 1;
+  }
+}
