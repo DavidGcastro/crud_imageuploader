@@ -63,7 +63,7 @@ export const createUserAsync = data => dispatch => {
   axios
     .post('/auth/signup', { firstName, lastName, email, password })
     .then(res => {
-      let user = res.data.user.id;
+      let user = res.data.user;
       dispatch(setUser(user));
       return res;
     })

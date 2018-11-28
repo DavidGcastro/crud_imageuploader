@@ -7,17 +7,26 @@ class Profile extends Component {
     this.props.getQAndA();
   }
   render() {
+    let { QandA, user } = this.props;
+    console.log(QandA, user);
     return <h1>Hello World</h1>;
   }
 }
 
+const mapStateToProps = state => {
+  return {
+    user: state.userReducer.user,
+    QandA: state.userReducer.questionsAndAnswers
+  };
+};
+
 const mapDispatchToProps = dispatch => {
   return {
-    getQAndA: data => dispatch(getQuestionsAndAnswersAsync())
+    getQAndA: () => dispatch(getQuestionsAndAnswersAsync())
   };
 };
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(Profile);
