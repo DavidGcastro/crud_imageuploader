@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import MyForm from '../components/MyForm';
+import { connect } from 'react-redux';
+import { loginUserAsync } from '../redux/reducers/user';
 
-export default class Login extends Component {
-  constructor() {
+class Login extends Component {
+  constructor(props) {
     super();
     this.state = {
       email: '',
@@ -15,20 +16,11 @@ export default class Login extends Component {
 
   handleClick = e => {
     e.preventDefault();
-    axios
-      .post('/auth/login', {
-        email: this.state.email,
-        password: this.state.password
-      })
-      .then(function(response) {
-        if (response.data.redirectUrl) {
-          window.location.href = response.data.redirectUrl;
-        }
-      })
-      .catch(error => {
-        console.log(error);
-        this.setState({ errorMessage: 'User not found!' });
-      });
+    let inputTextData = {
+      email: this.state.email,
+      password: this.state.password
+    };
+    this.props.loginUserAsync(inputTextData);
   };
 
   render() {
@@ -36,7 +28,7 @@ export default class Login extends Component {
       <MyForm
         salutation="Welcome"
         salutation2="Back."
-        message="Enter the email address associated with your account, and we’ll send a magic link to your inbox.">
+        message="Quisque velit nisi, pretium ut lcinia in, elementum id enim. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices.">
         <form className="form--wrapper">
           <div className="input--section">
             <label className="text--reg input--label">Your Email</label>
@@ -52,6 +44,7 @@ export default class Login extends Component {
           <div className="input--section">
             <label className="text--reg input--label">Password</label>
             <input
+              autoComplete="on"
               onChange={event =>
                 this.setState({
                   password: event.target.value
@@ -72,3 +65,14 @@ export default class Login extends Component {
     );
   }
 }
+
+const mapDispatchToProps = dispatch => {
+  return {
+    loginUserAsync: data => dispatch(loginUserAsync(data))
+  };
+};
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(Login);

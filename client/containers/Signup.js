@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import MyForm from '../components/MyForm';
-export default class Signup extends Component {
+import { connect } from 'react-redux';
+import { createUserAsync } from '../redux/reducers/user';
+
+class Signup extends Component {
   constructor() {
     super();
     this.state = {
@@ -16,8 +19,7 @@ export default class Signup extends Component {
     e.preventDefault();
     let { firstName, lastName, email, password } = this.state;
     let data = { firstName, lastName, email, password };
-    let { createUser } = this.props;
-    createUser(data);
+    this.props.createUserAsync(data);
   };
 
   render() {
@@ -86,3 +88,14 @@ export default class Signup extends Component {
     );
   }
 }
+
+const mapDispatchToProps = dispatch => {
+  return {
+    createUserAsync: data => dispatch(createUserAsync(data))
+  };
+};
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(Signup);

@@ -4,5 +4,6 @@ const router = require('express').Router();
 // starting from /api
 router.use('/users', require('./users'));
 router.use('/answers', require('./answers'));
+router.use('/questions', require('./questions'));
 
 module.exports = router;
