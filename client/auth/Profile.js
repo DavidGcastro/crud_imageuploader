@@ -9,6 +9,7 @@ import { addPhotoAsync } from '../redux/reducers/photos';
 import Header from './parts/Header';
 import Questions from './parts/Questions';
 import Answers from './parts/Answers';
+import Photos from './parts/Photos';
 
 class Profile extends Component {
   constructor() {
@@ -30,6 +31,10 @@ class Profile extends Component {
           <div className="profile--split">
             <Questions />
             <Answers />
+          </div>
+          <div className="profile--split">
+            <Photos />
+        
           </div>
         </div>
       </div>

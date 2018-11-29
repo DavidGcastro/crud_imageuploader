@@ -5,7 +5,7 @@ import { addAnswerAsync } from '../../redux/reducers/user';
 class Questions extends Component {
   state = {
     questionSelected: '',
-    answerGiven: '',
+    answerGiven: null,
     questionCounter: 0,
     error: ''
   };
@@ -19,18 +19,24 @@ class Questions extends Component {
     let user = this.props.user.id;
     let { questionSelected, answerGiven } = this.state;
     let data = { questionSelected, answerGiven, user };
-    this.setState({
-      questionSelected: '',
-      answerGiven: '',
-      questionCounter: this.state.questionCounter + 1
-    });
+    let qArr = [];
+    let { QandA } = this.props;
+    let questionsAnswered = QandA && QandA.map(x => qArr.push(x.questionId));
 
-    if (this.state.questionCounter >= 3) {
+    if (qArr.length >= 3) {
       this.setState({
         error: 'Max three questions.'
       });
       return;
     }
+
+    this.setState({
+      questionSelected: '',
+      answerGiven: '',
+      questionCounter: this.state.questionCounter + 1,
+      err: ''
+    });
+
     this.props.addAnswer(data);
   };
 
@@ -41,7 +47,9 @@ class Questions extends Component {
   };
 
   render() {
-    let { questions } = this.props;
+    let { questions, QandA } = this.props;
+    let qArr = [];
+    let questionsAnswered = QandA && QandA.map(x => qArr.push(x.questionId));
     return (
       <div className="profile--questions">
         <span className="text--large--light underline">Questions</span>
@@ -51,11 +59,13 @@ class Questions extends Component {
           style={{ marginBottom: 10, padding: 3 }}>
           {questions &&
             questions.map(x => {
-              return (
-                <option key={x.id} value={x.id}>
-                  {x.question}
-                </option>
-              );
+              if (!qArr.includes(x.id)) {
+                return (
+                  <option key={x.id} value={x.id}>
+                    {x.question}
+                  </option>
+                );
+              }
             })}
         </select>
         <input
@@ -87,7 +97,8 @@ class Questions extends Component {
 const mapStateToProps = state => {
   return {
     user: state.userReducer.user,
-    questions: state.questionsReducer.questions
+    questions: state.questionsReducer.questions,
+    QandA: state.userReducer.questionsAndAnswers
   };
 };
 

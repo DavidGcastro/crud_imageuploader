@@ -3,6 +3,13 @@ const { db, user, question, answer } = require('./models');
 const Promise = db.Promise; // gives us Promise.map
 let allQuestions;
 let allUsers;
+let qs = [
+  'Go To Karaoke Song...',
+  'My Last Meal Would be...',
+  'My simple pleasures...',
+  'A random fact I love is...',
+  'I get along best with people who...'
+];
 
 function random(max) {
   let num = Math.floor(Math.random() * max);
@@ -32,9 +39,9 @@ function seedUsers() {
 
 function seedQuestions() {
   return Promise.all(
-    new Array(6).fill(1).map(() =>
+    qs.map(x =>
       question.create({
-        question: faker.lorem.sentence() + '?'
+        question: x
       })
     )
   );
