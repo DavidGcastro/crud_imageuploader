@@ -2,6 +2,11 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { deleteAnswerAsync } from '../../redux/reducers/user';
 class Answers extends Component {
+  handleDelete = e => {
+    let id = e.target.value;
+    this.props.deleteAnswer(id);
+  };
+
   render() {
     let { QandA } = this.props;
     return (
@@ -17,11 +22,13 @@ class Answers extends Component {
                 <span className="text--reg" style={{ marginTop: 10 }}>
                   {x.response}
                 </span>
-                <input
+                <button
+                  onClick={this.handleDelete}
                   type="button"
                   className="button--close profile--buttonPlacement"
-                  value="x"
-                />
+                  value={x.id}>
+                  x
+                </button>
               </div>
             );
           })

@@ -45,6 +45,7 @@ export const getQuestionsAndAnswersAsync = () => (dispatch, getState) => {
 };
 
 export const deleteAnswerAsync = id => dispatch => {
+  console.log('in reducer', id);
   axios
     .delete(`/api/answers/${id}`)
     .then(() => dispatch(getQuestionsAndAnswersAsync()))
