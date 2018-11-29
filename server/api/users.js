@@ -22,7 +22,7 @@ router.get('/:id', (req, res, next) => {
     .catch(err => next(err));
 });
 
-router.post('/photos/:id', (req, res, next) => {
+router.post('/photos/:id', upload.single(), (req, res, next) => {
   let { userPhoto } = req.body;
   let { id } = req.params;
   user
