@@ -4,6 +4,7 @@ import {
   getQuestionsAndAnswersAsync,
   deleteAnswerAsync
 } from '../redux/reducers/user';
+import { addPhotoAsync } from '../redux/reducers/photos';
 
 class Profile extends Component {
   componentDidMount() {
@@ -12,6 +13,12 @@ class Profile extends Component {
   handleDelete = e => {
     let answerId = e.target.value;
     this.props.deleteAnswer(answerId);
+  };
+
+  photoSelectedHandler = e => {
+    // let photo = e.target.files[0];
+    let photo = 5;
+    this.props.addPhoto(photo, this.props.user.id);
   };
   render() {
     let { QandA, user, questions } = this.props;
@@ -25,6 +32,11 @@ class Profile extends Component {
           </div>
           <div className="profile--content">
             <span className="text--large--light underine">My Photos</span>
+            <input
+              className="input--inline"
+              type="file"
+              onChange={this.photoSelectedHandler}
+            />
           </div>
         </div>
       </div>
@@ -43,7 +55,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     getQAndA: () => dispatch(getQuestionsAndAnswersAsync()),
-    deleteAnswer: id => dispatch(deleteAnswerAsync(id))
+    deleteAnswer: id => dispatch(deleteAnswerAsync(id)),
+    addPhoto: (photo, id) => dispatch(addPhotoAsync(photo, id))
   };
 };
 

@@ -1,21 +1,21 @@
 import axios from 'axios';
-const SET_PHOTO = 'SET_PHOTOS';
+const ADD_PHOTO = 'ADD_PHOTOS';
 
-const setPhoto = photo => ({ type: SET_PHOTO, photo });
+const addPhoto = photo => ({ type: ADD_PHOTO, photo });
 
-export const getPhotoAsync = photo => dispatch =>
+export const addPhotoAsync = (photo, id) => dispatch =>
   axios
-    .post(`api/photos/${id}`, { photo })
-    .then(newPhoto => dispatch(setPhoto(newPhoto)))
+    .post(`api/users/photos/${id}`, { userPhoto: photo })
+    .then(newPhoto => dispatch(addPhoto(newPhoto.data)))
     .catch(err => console.log(err));
 
 /* REDUCER */
-export default function(initialState = {}, action) {
+export default function(initialState = { photos: [] }, action) {
   switch (action.type) {
-    case SET_PHOTO:
+    case ADD_PHOTO:
       return {
         ...initialState,
-        photos: this.photos.slice().push(action.photo)
+        photos: [...initialState.photos, action.photo]
       };
 
     default:

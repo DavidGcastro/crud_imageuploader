@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const { user, photo } = require('../db/models/index');
-
+const multer = require('multer');
+const upload = multer({ destination: '../../public/assets/images' });
 router.get('/', (req, res, next) => {
   user
     .findAll({
@@ -22,14 +23,19 @@ router.get('/:id', (req, res, next) => {
 });
 
 router.post('/photos/:id', (req, res, next) => {
-  let { photo } = req.body;
+  let { userPhoto } = req.body;
   let { id } = req.params;
   user
     .findOne({
       where: { id }
     })
-    .then(userFound => userFound.setPhoto(photo))
-    .then(() => res.sendStatus(200))
+    .then(userFound => {
+      photo
+        .create({ photo: userPhoto })
+        .then(newPhoto => userFound.setPhotos(newPhoto))
+        .catch(err => next(err));
+    })
+    .then(x => res.send('LOL'))
     .catch(err => next(err));
 });
 
