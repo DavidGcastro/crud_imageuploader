@@ -15,7 +15,7 @@ router.post('/', (req, res, next) => {
           .json({ success: true, redirectUrl: '/profile', user: req.user });
       });
     })
-    .catch(err => console.error(err));
+    .catch(err => next(err));
 });
 
 module.exports = router;

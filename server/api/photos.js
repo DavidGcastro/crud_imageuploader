@@ -1,35 +1,32 @@
 const router = require('express').Router();
-const { answer, question } = require('../db/models/index');
+const { photo } = require('../db/models/index');
 
 router.get('/', (req, res, next) => {
-  answer
-    .findAll({
-      include: [{ model: question }]
-    })
-    .then(answers => res.send(answers))
+  photo
+    .findAll()
+    .then(photos => res.send(photos))
     .catch(err => next(err));
 });
 
 router.get('/:id', (req, res, next) => {
   let { id } = req.params;
-  answer
+  photo
     .findAll({
-      limit: 3,
-      where: { userId: id },
-      include: [{ model: question }]
+      where: { id }
     })
-    .then(answer => res.send(answer))
+    .then(photo => res.send(photo))
     .catch(err => next(err));
 });
 
 router.delete('/:id', (req, res, next) => {
   let { id } = req.params;
-  answer
+  photo
     .findOne({
       where: { id }
     })
-    .then(answer => answer.destroy())
-    .then(x => res.send(x))
+    .then(photo => photo.destroy())
+    .then(() => res.sendStatus(200))
     .catch(err => next(err));
 });
+
 module.exports = router;

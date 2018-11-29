@@ -2,41 +2,40 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {
   getQuestionsAndAnswersAsync,
-  deleteAnswerAsync
+  deleteAnswerAsync,
+  addAnswerAsync
 } from '../redux/reducers/user';
 import { addPhotoAsync } from '../redux/reducers/photos';
+import Header from './parts/Header';
+import Questions from './parts/Questions';
+import Answers from './parts/Answers';
+import Photos from './parts/Photos';
+import UserPhotos from './parts/UserPhotos';
 
 class Profile extends Component {
+  constructor() {
+    super();
+    this.state = {
+      questionSelected: null,
+      answerGiven: ''
+    };
+  }
+
   componentDidMount() {
     this.props.getQAndA();
   }
-  handleDelete = e => {
-    let answerId = e.target.value;
-    this.props.deleteAnswer(answerId);
-  };
-
-  photoSelectedHandler = e => {
-    // let photo = e.target.files[0];
-    let photo = 5;
-    this.props.addPhoto(photo, this.props.user.id);
-  };
   render() {
-    let { QandA, user, questions } = this.props;
     return (
       <div className="parentFlexer wrapper">
-        <div className="profile innerPadding">
-          <div className="profile--header">
-            <span className="text--large--bold underline">
-              {user.firstName}
-            </span>
+        <div className=" profile innerPadding">
+          <Header />
+          <div className="profile--split">
+            <Questions />
+            <Answers />
           </div>
-          <div className="profile--content">
-            <span className="text--large--light underine">My Photos</span>
-            <input
-              className="input--inline"
-              type="file"
-              onChange={this.photoSelectedHandler}
-            />
+          <div className="profile--split">
+            <Photos />
+            <UserPhotos />
           </div>
         </div>
       </div>
@@ -56,7 +55,8 @@ const mapDispatchToProps = dispatch => {
   return {
     getQAndA: () => dispatch(getQuestionsAndAnswersAsync()),
     deleteAnswer: id => dispatch(deleteAnswerAsync(id)),
-    addPhoto: (photo, id) => dispatch(addPhotoAsync(photo, id))
+    addPhoto: (photo, id) => dispatch(addPhotoAsync(photo, id)),
+    addAnswer: data => dispatch(addAnswerAsync(data))
   };
 };
 
@@ -64,37 +64,3 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(Profile);
-
-// <div className="profile--split">
-//   <div className="profile--questions">
-//     {QandA && QandA.length ? (
-//       QandA.map(x => {
-//         return (
-//           <div key={x.id} style={{ marginBottom: 10, marginTop: 10 }}>
-//             <span className="text--reg--bold underline">
-//               {x.question.question}
-//             </span>
-//             <input
-//               onClick={this.handleDelete}
-//               className="button--submit"
-//               type="button"
-//               value={x.id}
-//             />
-//             <span className="text--reg" style={{ marginTop: 5 }}>
-//               {x.response}
-//             </span>
-//           </div>
-//         );
-//       })
-//     ) : (
-//         <div>
-//           <span className="text--reg">No Answers yet.</span>
-//           <input
-//             value="Add Question"
-//             type="submit"
-//             className="button--action"
-//             style={{ marginTop: 25, padding: 3 }}
-//           />
-//         </div>
-//       )}
-//   </div>
