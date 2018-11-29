@@ -55,6 +55,7 @@ router.post('/answer', (req, res, next) => {
     .create({ response: answerGiven })
     .then(newQ => newQ.setQuestion(questionSelected))
     .then(newQ => newQ.setUser(user))
+    .then(() => res.sendStatus(200))
     .catch(err => console.log(err));
 });
 

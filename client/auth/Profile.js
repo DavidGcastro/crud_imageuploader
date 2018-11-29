@@ -47,11 +47,11 @@ class Profile extends Component {
     this.props.addAnswer(data);
   };
   render() {
-    console.log(this.state);
     let { QandA, user, questions } = this.props;
     return (
       <div className="parentFlexer wrapper">
         <div className="profile innerPadding">
+          <span className="text--large--light">Hello, {user.firstName}</span>
           <div className="profile--questions">
             <select onChange={this.selectQuestion} style={{ marginBottom: 10 }}>
               {questions &&
@@ -94,12 +94,6 @@ class Profile extends Component {
             ) : (
               <div>
                 <span className="text--reg">No Answers yet.</span>
-                <input
-                  value="Add Question"
-                  type="submit"
-                  className="button--action"
-                  style={{ marginTop: 25, padding: 3 }}
-                />
               </div>
             )}
           </div>
