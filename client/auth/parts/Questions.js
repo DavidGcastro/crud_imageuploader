@@ -64,15 +64,17 @@ class Questions extends Component {
           placeholder="Please Select a Question"
           disabled={!this.state.questionSelected ? true : false}
         />
-        <input
-          onClick={this.handleAnswerQuestion}
-          className="button--submit"
-          type="button"
-          value="SELECT QUESTION"
-        />
-        <span className="text--reg" style={{ color: 'red', padding:20 }}>
-          {this.state.error}
-        </span>
+        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+          <input
+            onClick={this.handleAnswerQuestion}
+            className="button--submit"
+            type="button"
+            value="SELECT QUESTION"
+          />
+          <span className="text--reg" style={{ color: 'red' }}>
+            {this.state.error}
+          </span>
+        </div>
       </div>
     );
   }

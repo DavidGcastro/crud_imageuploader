@@ -37,6 +37,7 @@ const User = db.define(
     },
     password: {
       type: Sequelize.STRING,
+      allowNull: false,
       // Making `.password` act like a func hides it when serializing to JSON.
       // This is a hack to get around Sequelize's lack of a "private" option.
       get() {
@@ -53,6 +54,9 @@ User.encryptPassword = (plainText, salt) =>
   hashing.encryptPassword(plainText, salt);
 
 const setSaltAndPassword = user => {
+  if (user.password.length) {
+    throw new Error('Enter Password!');
+  }
   user.salt = User.generateSalt();
   user.password = User.encryptPassword(user.password(), user.salt());
 };

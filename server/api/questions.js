@@ -5,7 +5,7 @@ router.get('/', (req, res, next) => {
   question
     .findAll()
     .then(qs => res.send(qs))
-    .catch(err => console.error(err));
+    .catch(err => next(err));
 });
 
 module.exports = router;

@@ -7,18 +7,19 @@ router.get('/', (req, res, next) => {
       include: [{ model: question }]
     })
     .then(answers => res.send(answers))
-    .catch(err => console.error(err));
+    .catch(err => next(err));
 });
 
 router.get('/:id', (req, res, next) => {
   let { id } = req.params;
   answer
     .findAll({
+      limit: 3,
       where: { userId: id },
       include: [{ model: question }]
     })
     .then(answer => res.send(answer))
-    .catch(err => console.error(err));
+    .catch(err => next(err));
 });
 
 router.delete('/:id', (req, res, next) => {
@@ -29,6 +30,6 @@ router.delete('/:id', (req, res, next) => {
     })
     .then(answer => answer.destroy())
     .then(x => res.send(x))
-    .catch(err => console.error(err));
+    .catch(err => next(err));
 });
 module.exports = router;

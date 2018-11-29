@@ -13,7 +13,7 @@ passport.use(
         }
       })
       .then(user => {
-        if (!user) {
+        if (!user || password.length === 0) {
           console.log('NOT FOUND');
           return done(null, false);
         } else if (decrypt(password, user.salt(), user.password())) {
