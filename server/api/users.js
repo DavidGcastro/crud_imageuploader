@@ -33,31 +33,8 @@ router.get('/:id', (req, res, next) => {
     .catch(err => next(err));
 });
 
-router.post('/photos/:id', (req, res, next) => {
-  upload(req, res, err => {
-    if (err) {
-      console.log(err);
-    } else {
-      console.log(req.file, 'ffofofofofofofo');
-      res.send('test');
-    }
-  });
-  // let { userPhoto } = req.body;
-  // let { id } = req.params;
-
-  // console.log(id, req.file);
-  // user
-  //   .findOne({
-  //     where: { id }
-  //   })
-  //   .then(userFound => {
-  //     photo
-  //       .create({ name: 'test', photo: req.file.buffer })
-  //       .then(newPhoto => userFound.setPhotos(newPhoto))
-  //       .catch(err => next(err));
-  //   })
-  //   .then(x => res.send(x))
-  //   .catch(err => next(err));
+router.post('/photos/:id', upload, (req, res, next) => {
+  console.log('fix this');
 });
 
 router.post('/answer', (req, res, next) => {
