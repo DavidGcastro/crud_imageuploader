@@ -34,7 +34,7 @@ class Profile extends Component {
           </div>
           <div className="profile--split">
             <Photos />
-        
+            <Photos />
           </div>
         </div>
       </div>
