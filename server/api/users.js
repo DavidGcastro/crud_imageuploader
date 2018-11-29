@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { user, photo } = require('../db/models/index');
+const { user, photo, answer } = require('../db/models/index');
 // const multer = require('multer');
 // const storage = multer.diskStorage({
 //   destination: './files',
@@ -29,22 +29,33 @@ router.get('/:id', (req, res, next) => {
     .catch(err => next(err));
 });
 
-router.post('/photos/:id', /*upload.single('userPhoto'),*/ (req, res, next) => {
-  let { userPhoto } = req.body;
-  let { id } = req.params;
-  user
-    .findOne({
-      where: { id }
-    })
-    .then(userFound => {
-      photo
-        .create({ photo: userPhoto })
-        .then(newPhoto => userFound.setPhotos(newPhoto))
-        .catch(err => next(err));
-    })
-    .then(x => res.send(x))
-    .catch(err => next(err));
-});
+router.post(
+  '/photos/:id',
+  /*upload.single('userPhoto'),*/ (req, res, next) => {
+    let { userPhoto } = req.body;
+    let { id } = req.params;
+    user
+      .findOne({
+        where: { id }
+      })
+      .then(userFound => {
+        photo
+          .create({ photo: userPhoto })
+          .then(newPhoto => userFound.setPhotos(newPhoto))
+          .catch(err => next(err));
+      })
+      .then(x => res.send(x))
+      .catch(err => next(err));
+  }
+);
 
+router.post('/answer', (req, res, next) => {
+  let { questionSelected, answerGiven, user } = req.body;
+  answer
+    .create({ response: answerGiven })
+    .then(newQ => newQ.setQuestion(questionSelected))
+    .then(newQ => newQ.setUser(user))
+    .catch(err => console.log(err));
+});
 
 module.exports = router;

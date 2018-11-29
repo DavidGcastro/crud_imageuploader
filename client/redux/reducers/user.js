@@ -4,6 +4,7 @@ const SET_USER = 'SET_USER';
 const CREATE_USER = 'CREATE_USER';
 const LOG_OUT = 'LOG_OUT';
 const SET_QUESTIONS_AND_ANSWERS = 'SET_QUESTIONS_AND_ANSWERS';
+const ADD_ANSWER = 'ADD_ANSWER';
 /* ACTION CREATORS */
 const setUser = user => ({ type: SET_USER, user });
 const logoutUser = () => ({ type: LOG_OUT });
@@ -77,6 +78,15 @@ export const createUserAsync = data => dispatch => {
     .then(x => {
       history.push('/profile');
     });
+};
+
+export const addAnswerAsync = data => dispatch => {
+  let { questionSelected, answerGiven, user } = data;
+
+  axios
+    .post('api/users/answer', { questionSelected, answerGiven, user })
+    .then(() => dispatch(getQuestionsAndAnswersAsync()))
+    .catch(err => console.log(err));
 };
 
 export const logOutUserAsync = () => dispatch => {
