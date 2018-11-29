@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 
 const Header = props => {
   let { user } = props;
-  console.log(user);
   return (
     <div className="profile--header">
       <span className="text--large--light">

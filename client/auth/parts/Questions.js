@@ -4,7 +4,7 @@ import { addAnswerAsync } from '../../redux/reducers/user';
 
 class Questions extends Component {
   state = {
-    questionSelected: '',
+    questionSelected: 1,
     answerGiven: null,
     questionCounter: 0,
     error: ''

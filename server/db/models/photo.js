@@ -4,8 +4,11 @@ const Sequelize = require('sequelize');
 const Photos = db.define(
   'photo',
   {
-    photo: {
+    name: {
       type: Sequelize.STRING
+    },
+    photo: {
+      type: Sequelize.BLOB
     }
   },
   { timestamps: false }
