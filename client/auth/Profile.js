@@ -10,6 +10,7 @@ import Header from './parts/Header';
 import Questions from './parts/Questions';
 import Answers from './parts/Answers';
 import Photos from './parts/Photos';
+import UserPhotos from './parts/UserPhotos';
 
 class Profile extends Component {
   constructor() {
@@ -34,7 +35,7 @@ class Profile extends Component {
           </div>
           <div className="profile--split">
             <Photos />
-            <Photos />
+            <UserPhotos />
           </div>
         </div>
       </div>

@@ -75,3 +75,27 @@
   justify-content: center;
   align-items: center;
 }
+.photo {
+  // width: 35%; /* you can use % */
+  height: 150px;
+  padding: 10px;
+
+  &--delete {
+    position: absolute;
+    top: 0;
+    right: -20px;
+  }
+}
+
+.photo--mini--container {
+  position: relative;
+  width: 200px;
+}
+
+.profile--photo--container {
+  flex: 1;
+  margin-top: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}

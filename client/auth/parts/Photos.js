@@ -24,18 +24,16 @@ class Photos extends Component {
     return (
       <div className="profile--questions">
         <span className="text--large--light underline">Photos</span>
-        <form encType="multipart/form-data">
-          <Dropzone
-            name="userPhoto"
-            accept={acceptedFileTypes}
-            activeStyle={{ background: 'black', opacity: 0.1 }}
-            multiple={false}
-            className="profile--dropzone"
-            onDrop={this.handleOnDrop}
-            maxSize={imageMaxSize}>
-            <span className="text--reg">Drag photos here</span>
-          </Dropzone>
-        </form>
+        <Dropzone
+          name="userPhoto"
+          accept={acceptedFileTypes}
+          activeStyle={{ background: 'black', opacity: 0.1 }}
+          multiple={false}
+          className="profile--dropzone"
+          onDrop={this.handleOnDrop}
+          maxSize={imageMaxSize}>
+          <span className="text--reg">Drag photos here</span>
+        </Dropzone>
       </div>
     );
   }
