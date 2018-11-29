@@ -1,7 +1,9 @@
 import axios from 'axios';
 const ADD_PHOTO = 'ADD_PHOTOS';
+const REMOVE_PHOTO = 'REMOVE_PHOTOS';
 
 const addPhoto = photo => ({ type: ADD_PHOTO, photo });
+const removePhoto = photoToDelete => ({ type: REMOVE_PHOTO, photo });
 
 export const addPhotoAsync = (photo, id) => dispatch =>
   axios

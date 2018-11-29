@@ -16,8 +16,7 @@ class Profile extends Component {
   };
 
   photoSelectedHandler = e => {
-    // let photo = e.target.files[0];
-    let photo = 5;
+    let photo = e.target.files[0];
     this.props.addPhoto(photo, this.props.user.id);
   };
   render() {
@@ -32,11 +31,10 @@ class Profile extends Component {
           </div>
           <div className="profile--content">
             <span className="text--large--light underine">My Photos</span>
-            <input
-              className="input--inline"
-              type="file"
-              onChange={this.photoSelectedHandler}
-            />
+            <form method="post" encType="multipart/form-data" action="/upload">
+              <input type="file" onChange={this.photoSelectedHandler} />
+              <input type="submit" value="Submit" />
+            </form>
           </div>
         </div>
       </div>
