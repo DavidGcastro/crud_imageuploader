@@ -43,6 +43,13 @@ export const getQuestionsAndAnswersAsync = () => (dispatch, getState) => {
     .catch(err => console.log(err));
 };
 
+export const deleteAnswerAsync = id => dispatch => {
+  axios
+    .delete(`/api/answers/${id}`)
+    .then(() => dispatch(getQuestionsAndAnswersAsync()))
+    .catch(err => console.log(err));
+};
+
 export const setUserAsync = () => dispatch =>
   axios
     .get('/auth/me')
@@ -63,7 +70,7 @@ export const createUserAsync = data => dispatch => {
   axios
     .post('/auth/signup', { firstName, lastName, email, password })
     .then(res => {
-      let user = res.data.user.id;
+      let user = res.data.user;
       dispatch(setUser(user));
       return res;
     })

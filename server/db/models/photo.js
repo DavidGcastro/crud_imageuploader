@@ -2,10 +2,10 @@ const db = require('../index');
 const Sequelize = require('sequelize');
 
 const Photos = db.define(
-  'photos',
+  'photo',
   {
     photo: {
-      type: Sequelize.BLOB
+      type: Sequelize.STRING
     }
   },
   { timestamps: false }

@@ -33,6 +33,7 @@ class Signup extends Component {
             <div className="input--section">
               <label className="text--reg input--label">First Name</label>
               <input
+                autoComplete="on"
                 onChange={event =>
                   this.setState({
                     firstName: event.target.value
@@ -44,6 +45,7 @@ class Signup extends Component {
             <div className="input--section">
               <label className="text--reg input--label">Last Name</label>
               <input
+                autoComplete="on"
                 onChange={event =>
                   this.setState({
                     lastName: event.target.value
@@ -56,6 +58,7 @@ class Signup extends Component {
           <div className="input--section">
             <label className="text--reg input--label">Your Email</label>
             <input
+              autoComplete="on"
               onChange={event =>
                 this.setState({
                   email: event.target.value
@@ -67,6 +70,7 @@ class Signup extends Component {
           <div className="input--section">
             <label className="text--reg input--label">Password</label>
             <input
+              autoComplete="on"
               onChange={event =>
                 this.setState({
                   password: event.target.value
@@ -78,6 +82,7 @@ class Signup extends Component {
 
           <span className="text--danger">{this.state.errorMessage}</span>
           <input
+            autoComplete="on"
             onClick={this.handleClick}
             type="submit"
             className="button--action"

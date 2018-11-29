@@ -7,6 +7,7 @@ const photo = require('./photo');
 
 photo.belongsTo(user);
 user.hasMany(photo);
+user.hasMany(answer);
 answer.belongsTo(user);
 answer.belongsTo(question);
 question.hasMany(answer);
