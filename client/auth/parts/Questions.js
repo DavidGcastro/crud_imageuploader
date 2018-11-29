@@ -48,7 +48,7 @@ class Questions extends Component {
         <select
           className="input--selector"
           onChange={this.selectQuestion}
-          style={{ marginBottom: 10 }}>
+          style={{ marginBottom: 10, padding: 3 }}>
           {questions &&
             questions.map(x => {
               return (
@@ -59,13 +59,17 @@ class Questions extends Component {
             })}
         </select>
         <input
+          style={{ padding: 5 }}
           onChange={this.handleAnswer}
           type="text"
+          value={this.state.answerGiven}
           placeholder="Please Select a Question"
           disabled={!this.state.questionSelected ? true : false}
         />
         <div style={{ display: 'flex', justifyContent: 'space-between' }}>
           <input
+            disabled={!this.state.questionSelected ? true : false}
+            style={{ padding: 5 }}
             onClick={this.handleAnswerQuestion}
             className="button--submit"
             type="button"

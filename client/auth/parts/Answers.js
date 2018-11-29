@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getQuestionsAndAnswersAsync } from '../../redux/reducers/user';
+import { deleteAnswerAsync } from '../../redux/reducers/user';
 class Answers extends Component {
   render() {
     let { QandA } = this.props;
@@ -9,14 +9,19 @@ class Answers extends Component {
         {QandA && QandA.length ? (
           QandA.map(x => {
             return (
-              <div key={x.id} style={{ marginBottom: 10, marginTop: 10 }}>
-                <span className="text--reg--bold underline">
-                  {x.question.question}
-                </span>
-
-                <span className="text--reg" style={{ marginTop: 5 }}>
+              <div
+                key={x.id}
+                style={{ marginBottom: 10 }}
+                className="profile--answerContainer">
+                <span className="text--reg--bold">{x.question.question}</span>
+                <span className="text--reg" style={{ marginTop: 10 }}>
                   {x.response}
                 </span>
+                <input
+                  type="button"
+                  className="button--close profile--buttonPlacement"
+                  value="x"
+                />
               </div>
             );
           })
@@ -35,5 +40,13 @@ const mapStateToProps = state => {
     QandA: state.userReducer.questionsAndAnswers
   };
 };
+const mapDispatchToProps = dispatch => {
+  return {
+    deleteAnswer: id => dispatch(deleteAnswerAsync(id))
+  };
+};
 
-export default connect(mapStateToProps)(Answers);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Answers);
