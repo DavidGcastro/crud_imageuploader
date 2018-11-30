@@ -49,6 +49,7 @@
   flex-wrap: wrap;
 
   @include md {
+    flex: 1;
     display: flex;
     justify-content: space-between;
   }
@@ -83,13 +84,16 @@
   &--delete {
     position: absolute;
     top: 0;
-    right: -20px;
+    right: -10px;
   }
 }
 
 .photo--mini--container {
   position: relative;
-  width: 200px;
+
+  @include md {
+    max-width: 200px;
+  }
 }
 
 .profile--photo--container {
