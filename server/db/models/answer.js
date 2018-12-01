@@ -12,7 +12,16 @@ const Answer = db.define(
       }
     }
   },
-  { timestamps: false }
+  {
+    timestamps: false,
+    indexes: [
+      // Create a unique index on email
+      {
+        unique: true,
+        fields: ['questionId']
+      }
+    ]
+  }
 );
 
 module.exports = Answer;

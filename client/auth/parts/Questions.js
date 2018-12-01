@@ -28,11 +28,9 @@ class Questions extends Component {
     }
 
     this.setState({
-      questionSelected: '',
       answerGiven: '',
       error: ''
     });
-    // this.props.addQuestion(this.state.questionSelected);
     this.props.addAnswer(data);
   };
 
@@ -97,7 +95,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    addAnswer: data => dispatch(addAnswerAsync(data)),
+    addAnswer: data => dispatch(addAnswerAsync(data))
     // addQuestion: id => dispatch(questionsSelected(id))
   };
 };
