@@ -7,7 +7,7 @@ const removePhoto = () => ({ type: REMOVE_PHOTO });
 
 export const addPhotoAsync = (photo, id) => dispatch => {
   axios
-    .post(`api/users/photos/${id}`, { userPhoto: photo })
+    .post(`api/photos/${id}`, { userPhoto: photo })
     .then(newPhoto => dispatch(addPhoto(newPhoto.data)))
     .catch(err => console.log(err));
 };

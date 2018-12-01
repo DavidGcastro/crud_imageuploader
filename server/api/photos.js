@@ -1,5 +1,17 @@
 const router = require('express').Router();
 const { photo } = require('../db/models/index');
+const multer = require('multer');
+const path = require('path');
+const storage = multer.diskStorage({
+  destination: './files',
+  filename(req, file, cb) {
+    cb(
+      null,
+      file.fieldname + '-' + Date.now() + path.extname(file.originalname)
+    );
+  }
+});
+const upload = multer({ storage }).single('userPhoto');
 
 router.get('/', (req, res, next) => {
   photo
@@ -16,6 +28,10 @@ router.get('/:id', (req, res, next) => {
     })
     .then(photo => res.send(photo))
     .catch(err => next(err));
+});
+
+router.post('/:id', upload, (req, res, next) => {
+  console.log('fix this');
 });
 
 router.delete('/:id', (req, res, next) => {
