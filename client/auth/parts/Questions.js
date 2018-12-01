@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { addAnswerAsync } from '../../redux/reducers/user';
-import { questionsSelected } from '../../redux/reducers/questions';
+// import { questionsSelected } from '../../redux/reducers/questions';
 
 class Questions extends Component {
   state = {
@@ -32,7 +32,7 @@ class Questions extends Component {
       answerGiven: '',
       error: ''
     });
-    this.props.addQuestion(this.state.questionSelected);
+    // this.props.addQuestion(this.state.questionSelected);
     this.props.addAnswer(data);
   };
 
@@ -98,7 +98,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     addAnswer: data => dispatch(addAnswerAsync(data)),
-    addQuestion: id => dispatch(questionsSelected(id))
+    // addQuestion: id => dispatch(questionsSelected(id))
   };
 };
 

@@ -1,13 +1,13 @@
 import axios from 'axios';
 const GET_QUESTIONS = 'GET_QUESTIONS';
-const QUESTION_SELECTED = 'QUESTION_SELECTED';
+const QUESTIONS_SELECTED = 'QUESTIONS_SELECTED';
 const REMOVE_QUESTION = 'REMOVE_QUESTION';
 
 const setQuestions = questions => ({ type: GET_QUESTIONS, questions });
 
-export const questionsSelected = currentQuestion => ({
-  type: QUESTION_SELECTED,
-  questionsSelected: currentQuestion
+export const questionsSelected = arr => ({
+  type: QUESTIONS_SELECTED,
+  questionsSelected: arr
 });
 
 export const removeQuestion = removeId => ({
@@ -26,13 +26,10 @@ export default function(initialState = { questionsSelected: [] }, action) {
   switch (action.type) {
     case GET_QUESTIONS:
       return { ...initialState, questions: action.questions };
-    case QUESTION_SELECTED:
+    case QUESTIONS_SELECTED:
       return {
         ...initialState,
-        questionsSelected: [
-          ...initialState.questionsSelected,
-          action.questionsSelected
-        ]
+        questionsSelected: action.questionsSelected
       };
 
     case REMOVE_QUESTION: {

@@ -1,10 +1,10 @@
 import axios from 'axios';
 import history from '../../history';
+import { questionsSelected } from './questions';
 const SET_USER = 'SET_USER';
 const CREATE_USER = 'CREATE_USER';
 const LOG_OUT = 'LOG_OUT';
 const SET_QUESTIONS_AND_ANSWERS = 'SET_QUESTIONS_AND_ANSWERS';
-const ADD_ANSWER = 'ADD_ANSWER';
 /* ACTION CREATORS */
 const setUser = user => ({ type: SET_USER, user });
 const logoutUser = () => ({ type: LOG_OUT });
@@ -41,7 +41,13 @@ export const getQuestionsAndAnswersAsync = () => (dispatch, getState) => {
 
   axios
     .get(`/api/answers/${userId}`)
-    .then(qa => dispatch(setUserQuestionsAndAnswers(qa.data)))
+    .then(qa => {
+      dispatch(setUserQuestionsAndAnswers(qa.data));
+
+      return qa.data;
+    })
+    .then(arr => arr.map(x => x.questionId))
+    .then(x => dispatch(questionsSelected(x)))
     .catch(err => console.log(err));
 };
 
