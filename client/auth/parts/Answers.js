@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { deleteAnswerAsync } from '../../redux/reducers/user';
-import { removeQuestion } from '../../redux/reducers/questions';
 
 class Answers extends Component {
   handleDelete = e => {
     let id = e.target.value;
-    this.props.removeQuestionFunc(id);
     this.props.deleteAnswer(id);
   };
 
