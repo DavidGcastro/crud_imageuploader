@@ -42,6 +42,7 @@ class Questions extends Component {
 
   render() {
     let { questions, questionsSelectedArr } = this.props;
+    console.log(this.state);
     return (
       <div className="profile--questions">
         <span className="text--large--light underline">Questions</span>
