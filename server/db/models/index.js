@@ -7,10 +7,10 @@ const photo = require('./photo');
 
 photo.belongsTo(user);
 user.hasMany(photo);
-user.hasMany(answer); //target table
+user.hasMany(answer, { onDelete: 'CASCADE' }); //target table
 answer.belongsTo(user);
 answer.belongsTo(question);
-question.hasMany(answer);
+question.hasMany(answer, { onDelete: 'CASCADE' });
 
 // { foreignKey: { allowNull: false }, onDelete: 'CASCADE' }
 module.exports = { db, user, photo, question, answer };
