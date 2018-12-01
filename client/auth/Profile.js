@@ -27,13 +27,13 @@ class Profile extends Component {
   render() {
     return (
       <div className="parentFlexer wrapper">
-        <div className="profile innerPadding">
+        <div className="profile">
           <Header />
-          <div className="profile--split">
+          <div className="profile--split divider">
             <Questions />
             <Answers />
           </div>
-          <div className="profile--split">
+          <div className="profile--split divider">
             <Photos />
             <UserPhotos />
           </div>
