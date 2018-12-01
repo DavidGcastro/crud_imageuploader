@@ -5,10 +5,11 @@
     font-weight: 500;
     border: 0;
     font-size: 4vw;
-    font-weight: 200;
+    font-weight: 500;
     border-radius: 4px;
     width: 100%;
-    max-height: 45px;
+    height: 45px;
+    // max-height: 50px;
     transition: 200ms all ease;
     &:hover {
       background: #444;
@@ -42,7 +43,7 @@
 .button--close {
   background: $mintGreen;
   color: black;
-  text-transform: uppercase;
+  // text-transform: uppercase;
   border-radius: 100%;
   padding: 5px 8px;
 

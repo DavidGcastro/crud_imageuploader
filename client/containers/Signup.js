@@ -10,7 +10,7 @@ class Signup extends Component {
       firstName: '',
       lastName: '',
       email: '',
-      password: '',
+      password: undefined,
       errorMessage: ''
     };
   }
@@ -86,7 +86,7 @@ class Signup extends Component {
             onClick={this.handleClick}
             type="submit"
             className="button--action"
-            style={{ marginTop: 25, padding: 3 }}
+            style={{ marginTop: 25 }}
           />
         </form>
       </MyForm>

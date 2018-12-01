@@ -27,7 +27,7 @@ class Profile extends Component {
   render() {
     return (
       <div className="parentFlexer wrapper">
-        <div className=" profile innerPadding">
+        <div className="profile innerPadding">
           <Header />
           <div className="profile--split">
             <Questions />

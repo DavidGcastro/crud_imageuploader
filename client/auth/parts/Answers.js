@@ -33,9 +33,7 @@ class Answers extends Component {
             );
           })
         ) : (
-          <div>
-            <span className="text--reg">No Answers yet.</span>
-          </div>
+          <span className="text--reg">No Answers yet.</span>
         )}
       </div>
     );
