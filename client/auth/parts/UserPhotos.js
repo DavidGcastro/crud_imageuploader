@@ -5,8 +5,8 @@ const UserPhotos = () => {
   return (
     <div className="profile--photo--container">
       <div className="profile--innerParent">
-        {photoCount.map(x => (
-          <div className="photo--mini--container">
+        {photoCount.map((x, i) => (
+          <div key={i + Date.now()} className="photo--mini--container">
             <img className="photo" src="assets/images/default.png" />
             <button className="button--close photo--delete">x</button>
           </div>
