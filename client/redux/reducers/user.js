@@ -38,6 +38,7 @@ export const loginUserAsync = data => dispatch => {
 
 export const getQuestionsAndAnswersAsync = () => (dispatch, getState) => {
   let userId = getState().userReducer.user.id;
+
   axios
     .get(`/api/answers/${userId}`)
     .then(qa => dispatch(setUserQuestionsAndAnswers(qa.data)))

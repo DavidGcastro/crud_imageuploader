@@ -9,6 +9,7 @@ const acceptedFileTypes =
 
 class Photos extends Component {
   handleOnDrop = (files, rejectedFiles) => {
+    const formData = new FormData();
     if (rejectedFiles && rejectedFiles.length) {
       const currentRejectedFile = rejectedFiles[0];
       const currentRejectedType = currentRejectedFile.type;
@@ -18,7 +19,8 @@ class Photos extends Component {
       }
     }
 
-    this.props.addPhoto(files[0], this.props.user.id);
+    console.log(files);
+    // this.props.addPhoto(files[0], this.props.user.id);
   };
   render() {
     return (

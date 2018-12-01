@@ -6,7 +6,10 @@ const Answer = db.define(
   {
     response: {
       type: Sequelize.TEXT,
-      allowNull: false
+      allowNull: false,
+      validate: {
+        len: [2]
+      }
     }
   },
   { timestamps: false }
