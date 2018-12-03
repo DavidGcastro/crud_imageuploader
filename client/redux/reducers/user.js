@@ -63,6 +63,7 @@ export const setUserAsync = () => dispatch =>
     .get('/auth/me')
     .then(me => {
       dispatch(setUser(me.data));
+      console.log(me.data);
       return me.data;
     })
     .then(user =>

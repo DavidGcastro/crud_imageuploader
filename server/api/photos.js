@@ -24,7 +24,8 @@ router.get('/:id', (req, res, next) => {
   let { id } = req.params;
   photo
     .findAll({
-      where: { id }
+      where: { id },
+      limit: 6
     })
     .then(photo => res.send(photo))
     .catch(err => next(err));
@@ -39,6 +40,7 @@ router.post('/:id', (req, res, next) => {
       photo
         .create({ path: req.file.destination })
         .then(newPhoto => newPhoto.setUser(user))
+        .then(x => res.send(x))
         .catch(err => next(err));
     }
   });
