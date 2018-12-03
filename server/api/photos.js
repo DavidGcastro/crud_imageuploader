@@ -38,7 +38,7 @@ router.post('/:id', (req, res, next) => {
       res.send(err);
     } else {
       photo
-        .create({ path: req.file.destination })
+        .create({ path: req.file.path })
         .then(newPhoto => newPhoto.setUser(user))
         .then(x => res.send(x))
         .catch(err => next(err));
