@@ -6,10 +6,18 @@ const addPhoto = photo => ({ type: ADD_PHOTO, photo });
 const removePhoto = () => ({ type: REMOVE_PHOTO });
 const setPhotos = photos => ({ type: SET_PHOTOS, photos });
 
+export const setPhotoAsync = id => (dispatch, getState) => {
+  let userId = getState().userReducer.user.id;
+  axios
+    .get(`api/photos/${id || userId}`)
+    .then(photos => dispatch(setPhotos(photos.data)))
+    .catch(err => console.log(err));
+};
 export const addPhotoAsync = (photo, id) => dispatch => {
   axios
     .post(`api/photos/${id}`, photo)
     .then(res => dispatch(addPhoto(res.data.path)))
+    .then(() => dispatch(setPhotoAsync()))
     .catch(err => console.log(err));
 };
 
@@ -17,15 +25,10 @@ export const removePhotoAsync = id => dispatch => {
   axios
     .delete(`api/photos/${id}`)
     .then(() => dispatch(removePhoto()))
+    .then(() => dispatch(setPhotoAsync()))
     .catch(err => console.log(err));
 };
 
-export const setPhotoAsync = id => dispatch => {
-  axios
-    .get(`api/photos/${id}`)
-    .then(photos => dispatch(setPhotos(photos.data)))
-    .catch(err => console.log(err));
-};
 /* REDUCER */
 export default function(initialState = { photos: [] }, action) {
   switch (action.type) {

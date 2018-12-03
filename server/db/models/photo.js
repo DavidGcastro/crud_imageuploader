@@ -11,9 +11,13 @@ const Photos = db.define(
   { timestamps: false }
 );
 
+Photos.slicePath = path => {
+  let beginSlice = path.indexOf('/');
+  return path.slice(beginSlice);
+};
+
 const editPath = photo => {
-  let beginSlice = photo.get('path').indexOf('/');
-  this.path = photo.get('path').slice(beginSlice);
+  photo.path = Photos.slicePath(photo.path);
 };
 
 Photos.beforeSave(editPath);
