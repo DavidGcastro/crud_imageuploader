@@ -11,9 +11,14 @@ class UserPhotos extends React.Component {
   };
 
   render() {
+    console.log(this.props.error);
     return (
       <div className="profile--photo--container">
         <div className="profile--innerParent">
+          <span className="text--large--light" style={{ color: 'red' }}>
+            {this.props.error}
+          </span>
+
           {this.props.photos &&
             this.props.photos.map((x, i) => (
               <div key={i} className="photo--mini--container">
@@ -35,7 +40,8 @@ class UserPhotos extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    photos: state.photoReducer.photos
+    photos: state.photoReducer.photos,
+    error: state.photoReducer.error
   };
 };
 

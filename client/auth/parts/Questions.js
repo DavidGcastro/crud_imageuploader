@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { addAnswerAsync } from '../../redux/reducers/user';
-// import { questionsSelected } from '../../redux/reducers/questions';
 
 class Questions extends Component {
   state = {
@@ -102,7 +101,6 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     addAnswer: data => dispatch(addAnswerAsync(data))
-    // addQuestion: id => dispatch(questionsSelected(id))
   };
 };
 

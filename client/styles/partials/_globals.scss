@@ -69,12 +69,10 @@ input {
     padding: 40px;
   }
   @include lg {
-    padding: 60px;
+    padding: 50px;
   }
 
-  @include xl {
-    padding: 80px;
-  }
+
 }
 //For Header
 .spacer {

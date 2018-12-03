@@ -36,10 +36,9 @@ router.get('/:id', (req, res, next) => {
 router.post('/:id', (req, res, next) => {
   let user = req.params.id;
   upload(req, res, err => {
-    if (err) {
-      res.send(err);
+    if (!req.file) {
+      next(err);
     } else {
-      console.log(req.file);
       photo
         .create({ path: req.file.path, destination: req.file.path })
         .then(newPhoto => newPhoto.setUser(user))
