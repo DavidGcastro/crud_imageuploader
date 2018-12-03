@@ -42,7 +42,7 @@ class Questions extends Component {
 
   render() {
     let { questions, questionsSelectedArr } = this.props;
-    console.log(this.state);
+
     return (
       <div className="profile--questions">
         <span className="text--large--light underline">Questions</span>
@@ -68,15 +68,20 @@ class Questions extends Component {
           value={this.state.answerGiven}
           placeholder="Please Select a Question"
         />
-        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center'
+          }}>
           <input
-            style={{ padding: 5 }}
+            style={{ padding: 5, flex: 1 }}
             onClick={this.handleAnswerQuestion}
             className="button--submit"
             type="button"
             value="SUBMIT ANSWER"
           />
-          <span className="text--reg" style={{ color: 'red' }}>
+          <span className="text--reg" style={{ color: 'red', flex: 1 }}>
             {this.state.error}
           </span>
         </div>

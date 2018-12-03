@@ -45,18 +45,18 @@ class Profile extends Component {
 
 const mapStateToProps = state => {
   return {
-    user: state.userReducer.user,
-    QandA: state.userReducer.questionsAndAnswers,
-    questions: state.questionsReducer.questions
+    // user: state.userReducer.user,
+    // QandA: state.userReducer.questionsAndAnswers,
+    // questions: state.questionsReducer.questions
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
     getQAndA: () => dispatch(getQuestionsAndAnswersAsync()),
-    deleteAnswer: id => dispatch(deleteAnswerAsync(id)),
-    addPhoto: (photo, id) => dispatch(addPhotoAsync(photo, id)),
-    addAnswer: data => dispatch(addAnswerAsync(data))
+    // deleteAnswer: id => dispatch(deleteAnswerAsync(id)),
+    // addPhoto: (photo, id) => dispatch(addPhotoAsync(photo, id)),
+    // addAnswer: data => dispatch(addAnswerAsync(data))
   };
 };
 

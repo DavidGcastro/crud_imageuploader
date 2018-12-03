@@ -9,19 +9,11 @@ const acceptedFileTypes =
 
 class Photos extends Component {
   handleOnDrop = (files, rejectedFiles) => {
-    const formData = new FormData();
-    if (rejectedFiles && rejectedFiles.length) {
-      const currentRejectedFile = rejectedFiles[0];
-      const currentRejectedType = currentRejectedFile.type;
-      const currentRejectedSize = currentRejectedFile.size;
-      if (currentRejectedSize > imageMaxSize) {
-        alert('This file is too big!');
-      }
-    }
-
-    console.log(files);
-    // this.props.addPhoto(files[0], this.props.user.id);
+    const data = new FormData();
+    data.append('userPhoto', files[0]);
+    this.props.addPhoto(data, this.props.user.id);
   };
+
   render() {
     return (
       <div className="profile--questions">

@@ -1,14 +1,13 @@
 import axios from 'axios';
 const ADD_PHOTO = 'ADD_PHOTOS';
 const REMOVE_PHOTO = 'REMOVE_PHOTO';
-
 const addPhoto = photo => ({ type: ADD_PHOTO, photo });
 const removePhoto = () => ({ type: REMOVE_PHOTO });
 
 export const addPhotoAsync = (photo, id) => dispatch => {
+  console.log(photo, 'from addphotoasync');
   axios
-    .post(`api/photos/${id}`, { userPhoto: photo })
-    .then(newPhoto => dispatch(addPhoto(newPhoto.data)))
+    .post(`api/photos/${id}`, photo)
     .catch(err => console.log(err));
 };
 

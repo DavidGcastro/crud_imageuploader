@@ -15,10 +15,14 @@ const Answer = db.define(
   {
     timestamps: false,
     indexes: [
-      // Create a unique index on email
+      // Create a unique index on question
       {
         unique: true,
         fields: ['questionId']
+      },
+      {
+        allowNull: false,
+        fields: ['userId', 'questionId']
       }
     ]
   }

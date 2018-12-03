@@ -3,7 +3,7 @@ const { photo } = require('../db/models/index');
 const multer = require('multer');
 const path = require('path');
 const storage = multer.diskStorage({
-  destination: './files',
+  destination: './public/assets/userPhotos',
   filename(req, file, cb) {
     cb(
       null,
@@ -30,8 +30,18 @@ router.get('/:id', (req, res, next) => {
     .catch(err => next(err));
 });
 
-router.post('/:id', upload, (req, res, next) => {
-  console.log('fix this');
+router.post('/:id', (req, res, next) => {
+  let user = req.params.id;
+  upload(req, res, err => {
+    if (err) {
+      res.send(err);
+    } else {
+      photo
+        .create({ path: req.file.destination })
+        .then(newPhoto => newPhoto.setUser(user))
+        .catch(err => next(err));
+    }
+  });
 });
 
 router.delete('/:id', (req, res, next) => {
