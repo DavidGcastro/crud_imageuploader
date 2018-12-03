@@ -6,6 +6,9 @@ const Photos = db.define(
   {
     path: {
       type: Sequelize.STRING
+    },
+    destination: {
+      type: Sequelize.STRING
     }
   },
   { timestamps: false }

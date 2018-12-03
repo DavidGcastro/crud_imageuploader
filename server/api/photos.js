@@ -2,6 +2,8 @@ const router = require('express').Router();
 const { photo } = require('../db/models/index');
 const multer = require('multer');
 const path = require('path');
+const fs = require('fs');
+
 const storage = multer.diskStorage({
   destination: './public/assets/userPhotos',
   filename(req, file, cb) {
@@ -37,8 +39,9 @@ router.post('/:id', (req, res, next) => {
     if (err) {
       res.send(err);
     } else {
+      console.log(req.file);
       photo
-        .create({ path: req.file.path })
+        .create({ path: req.file.path, destination: req.file.path })
         .then(newPhoto => newPhoto.setUser(user))
         .then(x => res.send(x))
         .catch(err => next(err));
@@ -51,6 +54,13 @@ router.delete('/:id', (req, res, next) => {
   photo
     .findOne({
       where: { id }
+    })
+    .then(deleteFromFs => {
+      fs.unlink(deleteFromFs.destination, err => {
+        if (err) throw err;
+        console.log(deleteFromFs.destination + ' was DELETED!!!!');
+      });
+      return deleteFromFs;
     })
     .then(photo => photo.destroy())
     .then(() => res.sendStatus(200))
