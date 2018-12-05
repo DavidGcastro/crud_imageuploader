@@ -89,10 +89,10 @@ export const createUserAsync = data => dispatch => {
 };
 
 export const addAnswerAsync = data => dispatch => {
-  let { questionSelected, answerGiven, user } = data;
+  let { questionSelected, answerGiven, userId } = data;
 
   axios
-    .post('api/users/answer', { questionSelected, answerGiven, user })
+    .post('api/users/answer', { questionSelected, answerGiven, userId })
     .then(() => dispatch(getQuestionsAndAnswersAsync()))
     .catch(err => console.log(err));
 };

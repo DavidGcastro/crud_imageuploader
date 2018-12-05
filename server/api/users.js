@@ -22,13 +22,14 @@ router.get('/:id', (req, res, next) => {
 });
 
 router.post('/answer', (req, res, next) => {
-  let { questionSelected, answerGiven, user } = req.body;
+  let { questionSelected, answerGiven, userId } = req.body;
+
   answer
     .create({
       response: answerGiven
     })
     .then(newQ => newQ.setQuestion(questionSelected))
-    .then(newQ => newQ.setUser(user))
+    .then(newQ => newQ.setUser(userId))
     .then(() => res.sendStatus(200))
     .catch(err => next(err));
 });

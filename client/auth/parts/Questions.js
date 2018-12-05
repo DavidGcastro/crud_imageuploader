@@ -15,9 +15,9 @@ class Questions extends Component {
   };
 
   handleAnswerQuestion = () => {
-    let user = this.props.user.id;
+    let userId = this.props.user.id;
     let { questionSelected, answerGiven } = this.state;
-    let data = { questionSelected, answerGiven, user };
+    let data = { questionSelected, answerGiven, userId };
     let { questionsSelectedArr } = this.props;
     if (questionsSelectedArr.length >= 3) {
       this.setState({
