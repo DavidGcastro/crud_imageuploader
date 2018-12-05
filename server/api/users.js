@@ -24,32 +24,33 @@ router.get('/:id', (req, res, next) => {
 router.post('/answer', (req, res, next) => {
   let { questionSelected, answerGiven, userId } = req.body;
 
-  user
-    .findById(userId)
-    .then(userFound => {
-      userFound
-        .hasQuestion(questionSelected)
-        .then(bool => {
-          if (bool) throw Error('Question has already been selected!');
-        })
-        .catch(err => next(err));
+  // user
+  //   .findById(userId)
+  //   .then(userFound => {
+  //     userFound
+  //       .hasQuestion(questionSelected)
+  //       .then(bool => {
+  //         if (bool) throw Error('Question has already been selected!');
+  //       })
+  //       .catch(err => next(err));
+  //   })
+  //   .then(() =>
+  answer
+    .create({
+      response: answerGiven
     })
-    .then(() =>
-      answer
-        .create({
-          response: answerGiven
-        })
-        .then(newQ => newQ.setQuestion(questionSelected))
-        .then(newQ => newQ.setUser(userId))
-        .then(() => {
-          user
-            .findOne({ where: { id: userId } })
-            .then(foundUser => foundUser.addQuestion(questionSelected));
-        })
-        .then(() => res.sendStatus(200))
-        .catch(err => next(err))
-    )
+    .then(newQ => newQ.setQuestion(questionSelected))
+    .then(newQ => newQ.setUser(userId))
+    // .then(() => {
+    //   user
+    //     .findOne({ where: { id: userId } })
+    //     .then(foundUser => foundUser.addQuestion(questionSelected));
+    // })
+    .then(() => res.sendStatus(200))
     .catch(err => next(err));
 });
+
+//     .catch(err => next(err));
+// });
 
 module.exports = router;

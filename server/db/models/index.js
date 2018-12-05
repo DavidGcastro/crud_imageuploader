@@ -17,7 +17,7 @@ user.hasMany(answer); //target table
 answer.belongsTo(user);
 answer.belongsTo(question);
 question.hasMany(answer);
-user.belongsToMany(question, { through: questionsSelected });
-question.belongsToMany(user, { through: questionsSelected });
+// user.belongsToMany(question, { through: questionsSelected });
+// question.belongsToMany(user, { through: questionsSelected });
 
 module.exports = { db, user, photo, question, answer };
