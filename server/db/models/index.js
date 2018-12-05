@@ -12,5 +12,7 @@ answer.belongsTo(user);
 answer.belongsTo(question);
 question.hasMany(answer, { onDelete: 'CASCADE' });
 
+// question.hasMany(answer, { onDelete: 'CASCADE' });
+
 // { foreignKey: { allowNull: false }, onDelete: 'CASCADE' }
 module.exports = { db, user, photo, question, answer };

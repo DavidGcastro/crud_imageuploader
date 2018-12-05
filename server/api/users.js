@@ -24,7 +24,9 @@ router.get('/:id', (req, res, next) => {
 router.post('/answer', (req, res, next) => {
   let { questionSelected, answerGiven, user } = req.body;
   answer
-    .create({ response: answerGiven })
+    .create({
+      response: answerGiven
+    })
     .then(newQ => newQ.setQuestion(questionSelected))
     .then(newQ => newQ.setUser(user))
     .then(() => res.sendStatus(200))
