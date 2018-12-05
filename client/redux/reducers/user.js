@@ -1,10 +1,10 @@
 import axios from 'axios';
 import history from '../../history';
+import { questionsSelected } from './questions';
 const SET_USER = 'SET_USER';
 const CREATE_USER = 'CREATE_USER';
 const LOG_OUT = 'LOG_OUT';
 const SET_QUESTIONS_AND_ANSWERS = 'SET_QUESTIONS_AND_ANSWERS';
-const ADD_ANSWER = 'ADD_ANSWER';
 /* ACTION CREATORS */
 const setUser = user => ({ type: SET_USER, user });
 const logoutUser = () => ({ type: LOG_OUT });
@@ -38,9 +38,16 @@ export const loginUserAsync = data => dispatch => {
 
 export const getQuestionsAndAnswersAsync = () => (dispatch, getState) => {
   let userId = getState().userReducer.user.id;
+
   axios
     .get(`/api/answers/${userId}`)
-    .then(qa => dispatch(setUserQuestionsAndAnswers(qa.data)))
+    .then(qa => {
+      dispatch(setUserQuestionsAndAnswers(qa.data));
+
+      return qa.data;
+    })
+    .then(arr => arr.map(x => x.questionId))
+    .then(x => dispatch(questionsSelected(x)))
     .catch(err => console.log(err));
 };
 
@@ -56,6 +63,7 @@ export const setUserAsync = () => dispatch =>
     .get('/auth/me')
     .then(me => {
       dispatch(setUser(me.data));
+      console.log(me.data);
       return me.data;
     })
     .then(user =>
@@ -81,10 +89,10 @@ export const createUserAsync = data => dispatch => {
 };
 
 export const addAnswerAsync = data => dispatch => {
-  let { questionSelected, answerGiven, user } = data;
+  let { questionSelected, answerGiven, userId } = data;
 
   axios
-    .post('api/users/answer', { questionSelected, answerGiven, user })
+    .post('api/users/answer', { questionSelected, answerGiven, userId })
     .then(() => dispatch(getQuestionsAndAnswersAsync()))
     .catch(err => console.log(err));
 };

@@ -22,6 +22,7 @@ class Main extends React.Component {
         <div id="container">
           <div className="main--content">
             <Nav userLoggedIn={userLoggedIn} />
+            <div className="spacer" />
 
             {/*Content goes here*/}
             <Switch>

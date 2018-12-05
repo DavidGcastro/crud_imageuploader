@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { deleteAnswerAsync } from '../../redux/reducers/user';
+
 class Answers extends Component {
   handleDelete = e => {
     let id = e.target.value;
@@ -20,7 +21,15 @@ class Answers extends Component {
                 className="profile--answerContainer">
                 <span className="text--reg--bold">{x.question.question}</span>
                 <span className="text--reg" style={{ marginTop: 10 }}>
+                  <img
+                    src="/assets/images/open-quote-green.png"
+                    style={{ paddingRight: 5 }}
+                  />{' '}
                   {x.response}
+                  <img
+                    src="/assets/images/closed-quote-green.png"
+                    style={{ paddingLeft: 5 }}
+                  />
                 </span>
                 <button
                   onClick={this.handleDelete}
@@ -33,9 +42,7 @@ class Answers extends Component {
             );
           })
         ) : (
-          <div>
-            <span className="text--reg">No Answers yet.</span>
-          </div>
+          <span className="text--reg">No Answers yet.</span>
         )}
       </div>
     );
@@ -49,7 +56,8 @@ const mapStateToProps = state => {
 };
 const mapDispatchToProps = dispatch => {
   return {
-    deleteAnswer: id => dispatch(deleteAnswerAsync(id))
+    deleteAnswer: id => dispatch(deleteAnswerAsync(id)),
+    removeQuestionFunc: id => dispatch(removeQuestion(id))
   };
 };
 

@@ -5,7 +5,7 @@ import {
   deleteAnswerAsync,
   addAnswerAsync
 } from '../redux/reducers/user';
-import { addPhotoAsync } from '../redux/reducers/photos';
+import { setPhotoAsync } from '../redux/reducers/photos';
 import Header from './parts/Header';
 import Questions from './parts/Questions';
 import Answers from './parts/Answers';
@@ -13,27 +13,20 @@ import Photos from './parts/Photos';
 import UserPhotos from './parts/UserPhotos';
 
 class Profile extends Component {
-  constructor() {
-    super();
-    this.state = {
-      questionSelected: null,
-      answerGiven: ''
-    };
-  }
-
   componentDidMount() {
     this.props.getQAndA();
+    this.props.getPhotos();
   }
   render() {
     return (
       <div className="parentFlexer wrapper">
-        <div className=" profile innerPadding">
+        <div className="profile padder">
           <Header />
-          <div className="profile--split">
+          <div className="profile--split divider">
             <Questions />
             <Answers />
           </div>
-          <div className="profile--split">
+          <div className="profile--split divider">
             <Photos />
             <UserPhotos />
           </div>
@@ -45,18 +38,14 @@ class Profile extends Component {
 
 const mapStateToProps = state => {
   return {
-    user: state.userReducer.user,
-    QandA: state.userReducer.questionsAndAnswers,
-    questions: state.questionsReducer.questions
+    user: state.userReducer.user.id
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
     getQAndA: () => dispatch(getQuestionsAndAnswersAsync()),
-    deleteAnswer: id => dispatch(deleteAnswerAsync(id)),
-    addPhoto: (photo, id) => dispatch(addPhotoAsync(photo, id)),
-    addAnswer: data => dispatch(addAnswerAsync(data))
+    getPhotos: () => dispatch(setPhotoAsync())
   };
 };
 

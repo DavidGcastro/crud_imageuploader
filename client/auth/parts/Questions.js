@@ -5,8 +5,7 @@ import { addAnswerAsync } from '../../redux/reducers/user';
 class Questions extends Component {
   state = {
     questionSelected: 1,
-    answerGiven: null,
-    questionCounter: 0,
+    answerGiven: '',
     error: ''
   };
 
@@ -16,14 +15,11 @@ class Questions extends Component {
   };
 
   handleAnswerQuestion = () => {
-    let user = this.props.user.id;
+    let userId = this.props.user.id;
     let { questionSelected, answerGiven } = this.state;
-    let data = { questionSelected, answerGiven, user };
-    let qArr = [];
-    let { QandA } = this.props;
-    let questionsAnswered = QandA && QandA.map(x => qArr.push(x.questionId));
-
-    if (qArr.length >= 3) {
+    let data = { questionSelected, answerGiven, userId };
+    let { questionsSelectedArr } = this.props;
+    if (questionsSelectedArr.length >= 3) {
       this.setState({
         error: 'Max three questions.'
       });
@@ -31,12 +27,9 @@ class Questions extends Component {
     }
 
     this.setState({
-      questionSelected: '',
       answerGiven: '',
-      questionCounter: this.state.questionCounter + 1,
-      err: ''
+      error: ''
     });
-
     this.props.addAnswer(data);
   };
 
@@ -47,9 +40,8 @@ class Questions extends Component {
   };
 
   render() {
-    let { questions, QandA } = this.props;
-    let qArr = [];
-    let questionsAnswered = QandA && QandA.map(x => qArr.push(x.questionId));
+    let { questions, questionsSelectedArr } = this.props;
+
     return (
       <div className="profile--questions">
         <span className="text--large--light underline">Questions</span>
@@ -59,7 +51,7 @@ class Questions extends Component {
           style={{ marginBottom: 10, padding: 3 }}>
           {questions &&
             questions.map(x => {
-              if (!qArr.includes(x.id)) {
+              if (!questionsSelectedArr.includes(x.id)) {
                 return (
                   <option key={x.id} value={x.id}>
                     {x.question}
@@ -74,18 +66,21 @@ class Questions extends Component {
           type="text"
           value={this.state.answerGiven}
           placeholder="Please Select a Question"
-          disabled={!this.state.questionSelected ? true : false}
         />
-        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center'
+          }}>
           <input
-            disabled={!this.state.questionSelected ? true : false}
-            style={{ padding: 5 }}
+            style={{ padding: 5, flex: 1 }}
             onClick={this.handleAnswerQuestion}
             className="button--submit"
             type="button"
-            value="SELECT QUESTION"
+            value="SUBMIT ANSWER"
           />
-          <span className="text--reg" style={{ color: 'red' }}>
+          <span className="text--reg" style={{ color: 'red', flex: 1 }}>
             {this.state.error}
           </span>
         </div>
@@ -98,7 +93,8 @@ const mapStateToProps = state => {
   return {
     user: state.userReducer.user,
     questions: state.questionsReducer.questions,
-    QandA: state.userReducer.questionsAndAnswers
+    QandA: state.userReducer.questionsAndAnswers,
+    questionsSelectedArr: state.questionsReducer.questionsSelected
   };
 };
 

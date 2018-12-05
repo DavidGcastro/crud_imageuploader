@@ -7,9 +7,9 @@ const photo = require('./photo');
 
 photo.belongsTo(user);
 user.hasMany(photo);
-user.hasMany(answer);
-answer.belongsTo(user);
-answer.belongsTo(question);
+user.belongsToMany(question, { through: answer });
+question.belongsToMany(user, { through: answer });
 question.hasMany(answer);
+answer.belongsTo(question);
 
 module.exports = { db, user, photo, question, answer };

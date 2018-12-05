@@ -45,9 +45,8 @@ app.use(function(req, res, next) {
   }
   next();
 });
-
-app.use('/api', require('./api')); // include our routes!
 app.use('/auth', require('./auth'));
+app.use('/api', require('./api')); // include our routes!
 app.use(express.static('./public'));
 
 app.get('*', (req, res) => {
@@ -56,7 +55,7 @@ app.get('*', (req, res) => {
 
 //error handling middleware
 app.use((err, req, res, next) => {
-  console.error(err.stack);
+  console.error(err.stack, 'FROM ERROR HANDLING MIDDLEWARE');
   res.status(err.status || 500).send(err.message || 'Internal server error');
 });
 

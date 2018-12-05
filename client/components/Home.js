@@ -2,8 +2,8 @@ import React from 'react';
 
 const Home = () => {
   return (
-    <div className="padder">
-      <span className="text--large--light">This is the homepage.</span>
+    <div className="home--container">
+      <span className="text--large--light">The Dating App Made For Dating</span>
     </div>
   );
 };

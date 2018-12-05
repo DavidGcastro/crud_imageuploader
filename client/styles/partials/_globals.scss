@@ -2,6 +2,7 @@ html,
 body {
   height: 100%;
   width: 100%;
+  background: $lightGrey;
 }
 
 a {
@@ -39,10 +40,7 @@ a {
   flex: 1 0 auto;
   display: flex;
   flex-direction: column;
-
-  //  div {
-  //     width: 100%;ƒunde
-  //   }
+  // height: 100%;
 }
 .wrapper {
   max-width: 1280px;
@@ -72,16 +70,14 @@ input {
     padding: 40px;
   }
   @include lg {
-    padding: 60px;
+    padding: 50px;
   }
 
-  @include xl {
-    padding: 80px;
-  }
+
 }
 //For Header
 .spacer {
-  height: 60px;
+  height: 75px;
 }
 
 //spacing elements within div
