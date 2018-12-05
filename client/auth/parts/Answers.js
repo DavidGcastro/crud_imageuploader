@@ -21,7 +21,15 @@ class Answers extends Component {
                 className="profile--answerContainer">
                 <span className="text--reg--bold">{x.question.question}</span>
                 <span className="text--reg" style={{ marginTop: 10 }}>
+                  <img
+                    src="/assets/images/open-quote-green.png"
+                    style={{ paddingRight: 5 }}
+                  />{' '}
                   {x.response}
+                  <img
+                    src="/assets/images/closed-quote-green.png"
+                    style={{ paddingLeft: 5 }}
+                  />
                 </span>
                 <button
                   onClick={this.handleDelete}
