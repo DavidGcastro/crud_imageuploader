@@ -11,7 +11,7 @@ class Photos extends Component {
   handleOnDrop = (files, rejectedFiles) => {
     const data = new FormData();
     data.append('userPhoto', files[0]);
-    this.props.addPhoto(data, this.props.user.id);
+    this.props.addPhoto(data);
   };
 
   render() {
