@@ -15,9 +15,8 @@ class Questions extends Component {
   };
 
   handleAnswerQuestion = () => {
-    let userId = this.props.user.id;
     let { questionSelected, answerGiven } = this.state;
-    let data = { questionSelected, answerGiven, userId };
+    let data = { questionSelected, answerGiven };
     let { questionsSelectedArr } = this.props;
     if (questionsSelectedArr.length >= 3) {
       this.setState({
@@ -91,7 +90,6 @@ class Questions extends Component {
 
 const mapStateToProps = state => {
   return {
-    user: state.userReducer.user,
     questions: state.questionsReducer.questions,
     QandA: state.userReducer.questionsAndAnswers,
     questionsSelectedArr: state.questionsReducer.questionsSelected

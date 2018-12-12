@@ -36,11 +36,9 @@ export const loginUserAsync = data => dispatch => {
     });
 };
 
-export const getQuestionsAndAnswersAsync = () => (dispatch, getState) => {
-  let userId = getState().userReducer.user.id;
-
+export const getQuestionsAndAnswersAsync = () => dispatch => {
   axios
-    .get(`/api/answers/${userId}`)
+    .get(`/api/answers/`)
     .then(qa => {
       dispatch(setUserQuestionsAndAnswers(qa.data));
 
@@ -63,12 +61,11 @@ export const setUserAsync = () => dispatch =>
     .get('/auth/me')
     .then(me => {
       dispatch(setUser(me.data));
-      console.log(me.data);
       return me.data;
     })
-    .then(user =>
+    .then(() =>
       axios
-        .get(`/api/answers/${user.id}`)
+        .get(`/api/answers`)
         .then(qa => dispatch(setUserQuestionsAndAnswers(qa.data)))
         .catch(err => console.log(err))
     )
@@ -89,10 +86,10 @@ export const createUserAsync = data => dispatch => {
 };
 
 export const addAnswerAsync = data => dispatch => {
-  let { questionSelected, answerGiven, userId } = data;
+  let { questionSelected, answerGiven } = data;
 
   axios
-    .post('api/users/answer', { questionSelected, answerGiven, userId })
+    .post('api/users/answer', { questionSelected, answerGiven })
     .then(() => dispatch(getQuestionsAndAnswersAsync()))
     .catch(err => console.log(err));
 };

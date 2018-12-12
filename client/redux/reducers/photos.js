@@ -9,17 +9,16 @@ const setPhotos = photos => ({ type: SET_PHOTOS, photos });
 const errorHandler = errMsg => ({ type: ERROR, error: errMsg });
 
 export const setPhotoAsync = id => (dispatch, getState) => {
-  let userId = getState().userReducer.user.id;
   axios
-    .get(`api/photos/${id || userId}`)
+    .get(`api/photos/`)
     .then(photos => dispatch(setPhotos(photos.data)))
     .catch(() =>
       dispatch(errorHandler('Problem retrieving images from server'))
     );
 };
-export const addPhotoAsync = (photo, id) => dispatch => {
+export const addPhotoAsync = photo => dispatch => {
   axios
-    .post(`api/photos/${id}`, photo)
+    .post(`api/photos/`, photo)
     .then(res => dispatch(addPhoto(res.data.path)))
     .then(() => dispatch(setPhotoAsync()))
     .catch(() => dispatch(errorHandler('Problem Adding Image')));

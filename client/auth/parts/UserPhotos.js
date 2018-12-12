@@ -11,7 +11,6 @@ class UserPhotos extends React.Component {
   };
 
   render() {
-    console.log(this.props.error);
     return (
       <div className="profile--photo--container">
         <div className="profile--innerParent">
@@ -49,7 +48,6 @@ const mapDispatchToProps = dispatch => {
   return {
     deletePhoto: id => dispatch(removePhotoAsync(id)),
     setPhotos: () => dispatch(setPhotoAsync())
-    // addQuestion: id => dispatch(questionsSelected(id))
   };
 };
 
